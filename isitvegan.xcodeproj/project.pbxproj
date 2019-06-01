@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		455346B522A2ACD6005127C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455346B422A2ACD6005127C9 /* AppDelegate.swift */; };
-		455346B722A2ACD6005127C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455346B622A2ACD6005127C9 /* ViewController.swift */; };
+		455346B722A2ACD6005127C9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455346B622A2ACD6005127C9 /* RootViewController.swift */; };
 		455346BA22A2ACD6005127C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455346B822A2ACD6005127C9 /* Main.storyboard */; };
 		455346BD22A2ACD6005127C9 /* isitvegan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 455346BB22A2ACD6005127C9 /* isitvegan.xcdatamodeld */; };
 		455346BF22A2ACD7005127C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 455346BE22A2ACD7005127C9 /* Assets.xcassets */; };
@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		455346B122A2ACD6005127C9 /* isitvegan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = isitvegan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		455346B422A2ACD6005127C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		455346B622A2ACD6005127C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		455346B622A2ACD6005127C9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		455346B922A2ACD6005127C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		455346BC22A2ACD6005127C9 /* isitvegan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = isitvegan.xcdatamodel; sourceTree = "<group>"; };
 		455346BE22A2ACD7005127C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				455346B422A2ACD6005127C9 /* AppDelegate.swift */,
-				455346B622A2ACD6005127C9 /* ViewController.swift */,
+				455346B622A2ACD6005127C9 /* RootViewController.swift */,
 				455346B822A2ACD6005127C9 /* Main.storyboard */,
 				455346BE22A2ACD7005127C9 /* Assets.xcassets */,
 				455346C022A2ACD7005127C9 /* LaunchScreen.storyboard */,
@@ -138,7 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				455346B722A2ACD6005127C9 /* ViewController.swift in Sources */,
+				455346B722A2ACD6005127C9 /* RootViewController.swift in Sources */,
 				455346B522A2ACD6005127C9 /* AppDelegate.swift in Sources */,
 				455346BD22A2ACD6005127C9 /* isitvegan.xcdatamodeld in Sources */,
 			);
