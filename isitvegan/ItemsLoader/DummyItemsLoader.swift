@@ -1,7 +1,5 @@
 import Foundation
 
-
-
 class DummyItemsLoader {
     private let itemsDeserializer: ItemsDeserializer
     
