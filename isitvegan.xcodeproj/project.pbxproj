@@ -16,6 +16,10 @@
 		459EE89922A2B10800F976FA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89822A2B10800F976FA /* Item.swift */; };
 		459EE89C22A2B97100F976FA /* SpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */; };
 		459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */; };
+		459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */; };
+		459EE8A322A2E7F000F976FA /* JsonItemDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A222A2E7F000F976FA /* JsonItemDeserializer.swift */; };
+		459EE8A622A2E8E800F976FA /* ItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A522A2E8E800F976FA /* ItemsLoader.swift */; };
+		459EE8A822A2E91600F976FA /* DummyItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A722A2E91600F976FA /* DummyItemsLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		459EE89822A2B10800F976FA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexer.swift; sourceTree = "<group>"; };
 		459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexerImpl.swift; sourceTree = "<group>"; };
+		459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsDeserializer.swift; sourceTree = "<group>"; };
+		459EE8A222A2E7F000F976FA /* JsonItemDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonItemDeserializer.swift; sourceTree = "<group>"; };
+		459EE8A522A2E8E800F976FA /* ItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLoader.swift; sourceTree = "<group>"; };
+		459EE8A722A2E91600F976FA /* DummyItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyItemsLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,8 @@
 		455346B322A2ACD6005127C9 /* isitvegan */ = {
 			isa = PBXGroup;
 			children = (
+				459EE8A422A2E8C200F976FA /* ItemsLoader */,
+				459EE89F22A2E79A00F976FA /* ItemsDeserializer */,
 				459EE89A22A2B96500F976FA /* Spotlight */,
 				459EE89722A2B0FB00F976FA /* Model */,
 				455346B422A2ACD6005127C9 /* AppDelegate.swift */,
@@ -90,6 +100,24 @@
 				459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */,
 			);
 			path = Spotlight;
+			sourceTree = "<group>";
+		};
+		459EE89F22A2E79A00F976FA /* ItemsDeserializer */ = {
+			isa = PBXGroup;
+			children = (
+				459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */,
+				459EE8A222A2E7F000F976FA /* JsonItemDeserializer.swift */,
+			);
+			path = ItemsDeserializer;
+			sourceTree = "<group>";
+		};
+		459EE8A422A2E8C200F976FA /* ItemsLoader */ = {
+			isa = PBXGroup;
+			children = (
+				459EE8A522A2E8E800F976FA /* ItemsLoader.swift */,
+				459EE8A722A2E91600F976FA /* DummyItemsLoader.swift */,
+			);
+			path = ItemsLoader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,9 +192,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				459EE89C22A2B97100F976FA /* SpotlightIndexer.swift in Sources */,
+				459EE8A822A2E91600F976FA /* DummyItemsLoader.swift in Sources */,
+				459EE8A322A2E7F000F976FA /* JsonItemDeserializer.swift in Sources */,
+				459EE8A622A2E8E800F976FA /* ItemsLoader.swift in Sources */,
 				459EE89922A2B10800F976FA /* Item.swift in Sources */,
 				455346B722A2ACD6005127C9 /* RootViewController.swift in Sources */,
 				455346B522A2ACD6005127C9 /* AppDelegate.swift in Sources */,
+				459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */,
 				459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */,
 				455346BD22A2ACD6005127C9 /* DataModel.xcdatamodeld in Sources */,
 			);
