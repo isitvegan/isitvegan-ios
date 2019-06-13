@@ -5,8 +5,13 @@ import Foundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
     lazy var persistentContainer: NSPersistentContainer = createPersistentContainer()
+    
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default", sessionRole: connectingSceneSession.role)
+    }
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
         let indexer = SpotlightIndexerImpl(searchableIndex: CSSearchableIndex.default())

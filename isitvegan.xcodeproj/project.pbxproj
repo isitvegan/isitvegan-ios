@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		455346B522A2ACD6005127C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455346B422A2ACD6005127C9 /* AppDelegate.swift */; };
 		455346B722A2ACD6005127C9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455346B622A2ACD6005127C9 /* RootViewController.swift */; };
-		455346BA22A2ACD6005127C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455346B822A2ACD6005127C9 /* Main.storyboard */; };
 		455346BD22A2ACD6005127C9 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 455346BB22A2ACD6005127C9 /* DataModel.xcdatamodeld */; };
 		455346BF22A2ACD7005127C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 455346BE22A2ACD7005127C9 /* Assets.xcassets */; };
 		455346C222A2ACD7005127C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455346C022A2ACD7005127C9 /* LaunchScreen.storyboard */; };
+		458DB17022B2C7CB00DB43F8 /* DefaultSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */; };
 		459EE89922A2B10800F976FA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89822A2B10800F976FA /* Item.swift */; };
 		459EE89C22A2B97100F976FA /* SpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */; };
 		459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */; };
@@ -26,11 +26,12 @@
 		455346B122A2ACD6005127C9 /* isitvegan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = isitvegan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		455346B422A2ACD6005127C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		455346B622A2ACD6005127C9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		455346B922A2ACD6005127C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		455346BC22A2ACD6005127C9 /* isitvegan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = isitvegan.xcdatamodel; sourceTree = "<group>"; };
 		455346BE22A2ACD7005127C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		455346C122A2ACD7005127C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		455346C322A2ACD7005127C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSceneDelegate.swift; sourceTree = "<group>"; };
+		458DB17122B2C86A00DB43F8 /* isitvegan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = isitvegan.entitlements; sourceTree = "<group>"; };
 		459EE89822A2B10800F976FA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexer.swift; sourceTree = "<group>"; };
 		459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexerImpl.swift; sourceTree = "<group>"; };
@@ -70,17 +71,18 @@
 		455346B322A2ACD6005127C9 /* isitvegan */ = {
 			isa = PBXGroup;
 			children = (
+				458DB17122B2C86A00DB43F8 /* isitvegan.entitlements */,
 				459EE8A422A2E8C200F976FA /* ItemsLoader */,
 				459EE89F22A2E79A00F976FA /* ItemsDeserializer */,
 				459EE89A22A2B96500F976FA /* Spotlight */,
 				459EE89722A2B0FB00F976FA /* Model */,
 				455346B422A2ACD6005127C9 /* AppDelegate.swift */,
 				455346B622A2ACD6005127C9 /* RootViewController.swift */,
-				455346B822A2ACD6005127C9 /* Main.storyboard */,
 				455346BE22A2ACD7005127C9 /* Assets.xcassets */,
 				455346C022A2ACD7005127C9 /* LaunchScreen.storyboard */,
 				455346C322A2ACD7005127C9 /* Info.plist */,
 				455346BB22A2ACD6005127C9 /* DataModel.xcdatamodeld */,
+				458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */,
 			);
 			path = isitvegan;
 			sourceTree = "<group>";
@@ -180,7 +182,6 @@
 			files = (
 				455346C222A2ACD7005127C9 /* LaunchScreen.storyboard in Resources */,
 				455346BF22A2ACD7005127C9 /* Assets.xcassets in Resources */,
-				455346BA22A2ACD6005127C9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +199,7 @@
 				459EE89922A2B10800F976FA /* Item.swift in Sources */,
 				455346B722A2ACD6005127C9 /* RootViewController.swift in Sources */,
 				455346B522A2ACD6005127C9 /* AppDelegate.swift in Sources */,
+				458DB17022B2C7CB00DB43F8 /* DefaultSceneDelegate.swift in Sources */,
 				459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */,
 				459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */,
 				455346BD22A2ACD6005127C9 /* DataModel.xcdatamodeld in Sources */,
@@ -207,14 +209,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		455346B822A2ACD6005127C9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				455346B922A2ACD6005127C9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		455346C022A2ACD7005127C9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -346,15 +340,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = isitvegan/isitvegan.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 9C5WPNYQ97;
 				INFOPLIST_FILE = isitvegan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ninja.rubys.isitvegan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,15 +362,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = isitvegan/isitvegan.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 9C5WPNYQ97;
 				INFOPLIST_FILE = isitvegan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ninja.rubys.isitvegan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
