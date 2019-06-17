@@ -18,14 +18,6 @@ struct Item {
         self.eNumber = eNumber
         self.description = description
     }
-    
-    init(fromManaged item: ItemManaged) {
-        self.id = item.id!
-        self.name = item.name!
-        self.eNumber = item.eNumber
-        self.state = State(rawValue: item.state!)!
-        self.description = item.itemDescription!
-    }
 }
 
 extension Item.State: Decodable {

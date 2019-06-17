@@ -14,15 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
-        let indexer = SpotlightIndexerImpl(searchableIndex: CSSearchableIndex.default())
-        let itemsLoader = DummyItemsLoader(itemsDeserializer: JsonItemDeserializer(decoder: JSONDecoder()))
-
-        indexer.deleteAll()
-        indexer.index(items: itemsLoader.loadItems())
+        // TODO: only do this on the first launch
+        populateDatabase()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        self.saveContext()
+        saveContext()
+    }
+
+    private func populateDatabase() {
+        let itemsLoader = DummyItemsLoader(itemsDeserializer: JsonItemDeserializer(decoder: JSONDecoder()))
+        let storageWriter = CoreDataStorage(persistentContainer: persistentContainer)
+        let itemsStorageUpdater = ItemsStorageUpdaterImpl(source: itemsLoader, target: storageWriter)
+        itemsStorageUpdater.updateItems()
+        storageWriter.deleteAllItems()
     }
     
     private func createPersistentContainer() -> NSPersistentContainer {

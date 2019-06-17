@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14838.16" systemVersion="19A471t" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="NO" userDefinedModelVersionIdentifier="">
     <entity name="Item" representedClassName="ItemManaged" syncable="YES" codeGenerationType="class">
-        <attribute name="eNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" attributeType="String" syncable="YES"/>
-        <attribute name="itemDescription" attributeType="String" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="state" attributeType="String" syncable="YES"/>
+        <attribute name="eNumber" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="itemDescription" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="state" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="118"/>
