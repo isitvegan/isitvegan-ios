@@ -9,8 +9,9 @@ class DefaultSceneDelegate: UIResponder {
 extension DefaultSceneDelegate: UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         window = UIWindow(windowScene: scene as! UIWindowScene)
-        window!.rootViewController = createSearchView()
-        window!.makeKeyAndVisible()
+        window?.rootViewController = createSearchView()
+        window?.tintColor = .veganGreen
+        window?.makeKeyAndVisible()
     }
 }
 
