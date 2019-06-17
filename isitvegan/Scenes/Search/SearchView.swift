@@ -14,7 +14,7 @@ protocol SearchView {
     func showItem(item: Item)
 }
 
-class SearchViewController: UISplitViewController, UISplitViewControllerDelegate, UITableViewDataSource {
+class SearchViewController: UISplitViewController, UISplitViewControllerDelegate, UITableViewDataSource, UISearchResultsUpdating {
     private let controller: SearchController
     private weak var tableView: UITableView?
     private weak var refreshControl: UIRefreshControl?
@@ -24,13 +24,15 @@ class SearchViewController: UISplitViewController, UISplitViewControllerDelegate
         self.controller = controller
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        controller.listItems()
 
         delegate = self
         preferredDisplayMode = .allVisible
@@ -48,7 +50,10 @@ class SearchViewController: UISplitViewController, UISplitViewControllerDelegate
         tableViewController.navigationItem.title = "Is it Vegan?"
 
         tableViewController.navigationItem.searchController = UISearchController()
-        tableViewController.navigationItem.searchController!.automaticallyShowsScopeBar = true
+        tableViewController.navigationItem.searchController?.automaticallyShowsScopeBar = true
+        tableViewController.navigationItem.searchController?.obscuresBackgroundDuringPresentation = false
+        tableViewController.navigationItem.searchController?.searchResultsUpdater = self
+        tableViewController.navigationItem.searchController?.definesPresentationContext = false
         tableViewController.navigationItem.hidesSearchBarWhenScrolling = false
         tableViewController.navigationItem.searchController!.searchBar.scopeButtonTitles = [
             "Search titles",
@@ -59,8 +64,11 @@ class SearchViewController: UISplitViewController, UISplitViewControllerDelegate
         masterViewController.viewControllers = [tableViewController]
         masterViewController.navigationBar.prefersLargeTitles = true
         viewControllers.append(masterViewController)
+    }
 
-        controller.listItems()
+    func updateSearchResults(for searchController: UISearchController) {
+        let query = searchController.searchBar.text!
+        controller.search(name: query)
     }
 
     func splitViewController(
