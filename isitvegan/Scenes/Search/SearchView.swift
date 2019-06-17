@@ -14,7 +14,7 @@ protocol SearchView {
     func showItem(item: Item)
 }
 
-class SearchViewController: UISplitViewController, UISplitViewControllerDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class SearchViewController: UISplitViewController {
     private let controller: SearchController
     private weak var tableView: UITableView?
     private weak var refreshControl: UIRefreshControl?
@@ -59,49 +59,18 @@ class SearchViewController: UISplitViewController, UISplitViewControllerDelegate
             "Search titles",
             "Search E numbers",
         ]
-        
+
         let masterViewController = UINavigationController()
         masterViewController.viewControllers = [tableViewController]
         masterViewController.navigationBar.prefersLargeTitles = true
         viewControllers.append(masterViewController)
     }
 
-    func updateSearchResults(for searchController: UISearchController) {
-        let query = searchController.searchBar.text!
-        controller.search(name: query)
-    }
-
-    func splitViewController(
-        _ splitViewController: UISplitViewController,
-        collapseSecondary secondaryViewController: UIViewController,
-        onto primaryViewController: UIViewController) -> Bool {
-        // Return true to prevent UIKit from applying its default behavior
-        return false
-    }
-    
-    @objc func handleRefreshControl() {
+    @objc private func handleRefreshControl() {
         DispatchQueue.main.async {
             self.controller.refreshItems()
             self.refreshControl?.endRefreshing()
         }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection _section: Int) -> Int {
-        return items.count
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = items[indexPath.item]
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.accessoryType = .disclosureIndicator
-        cell.textLabel!.text = item.name
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }
 
@@ -110,7 +79,44 @@ extension SearchViewController: SearchView {
         self.items = items
         self.tableView?.reloadData()
     }
-    
+
     func showItem(item: Item) {
+    }
+}
+
+extension SearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection _section: Int) -> Int {
+        return items.count
+    }
+
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = items[indexPath.item]
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.accessoryType = .disclosureIndicator
+        cell.textLabel!.text = item.name
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
+
+extension SearchViewController: UISplitViewControllerDelegate {
+    func splitViewController(
+        _ splitViewController: UISplitViewController,
+        collapseSecondary secondaryViewController: UIViewController,
+        onto primaryViewController: UIViewController) -> Bool {
+        let applyDefaultBehavior = false
+        return applyDefaultBehavior
+    }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let query = searchController.searchBar.text!
+        controller.search(name: query)
     }
 }
