@@ -2,9 +2,11 @@ import UIKit
 
 struct SearchViewItem {
     let name: String
+    let eNumber: String
     
-    init(name: String) {
+    init(name: String, eNumber: String) {
         self.name = name
+        self.eNumber = eNumber
     }
 }
 
@@ -21,8 +23,8 @@ class SearchViewController: UISplitViewController {
     private var items: [SearchViewItem] = []
     
     private let searchScopes: [SearchScope] = [
-        SearchScope(buttonTitle: "Search names", kind: .names),
-        SearchScope(buttonTitle: "Search E numbers", kind: .eNumbers),
+        SearchScope(buttonTitle: "Search names", kind: .names, keyboardType: .default),
+        SearchScope(buttonTitle: "Search E numbers", kind: .eNumbers, keyboardType: .numberPad),
     ]
 
     init(controller: SearchController) {
@@ -70,6 +72,7 @@ class SearchViewController: UISplitViewController {
         searchController.searchResultsUpdater = self
         searchController.definesPresentationContext = false
         searchController.searchBar.scopeButtonTitles = searchScopes.map { $0.buttonTitle }
+        searchController.searchBar.delegate = self
         return searchController
     }
 
@@ -99,9 +102,10 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.item]
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.accessoryType = .disclosureIndicator
         cell.textLabel!.text = item.name
+        cell.detailTextLabel?.text = item.eNumber
         return cell
     }
 
@@ -136,10 +140,19 @@ extension SearchViewController: UISearchResultsUpdating {
     }
 }
 
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        let scope = searchScopes[selectedScope]
+        searchBar.searchTextField.keyboardType = scope.keyboardType
+        searchBar.searchTextField.reloadInputViews()
+    }
+}
+
 extension SearchViewController {
     private struct SearchScope {
         let buttonTitle: String
         let kind: SearchScopeKind
+        let keyboardType: UIKeyboardType
     }
 
     private enum SearchScopeKind {

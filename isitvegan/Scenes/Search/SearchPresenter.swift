@@ -12,10 +12,17 @@ class SearchPresenterImpl {
 
 extension SearchPresenterImpl: SearchPresenter {
     func present(items: [Item]) {
-        let viewItems = items.map { SearchViewItem(name: $0.name) }
+        let viewItems = items.map(createSearchViewItem)
         self.view.listItems(items: viewItems)
     }
 
     func present(item: Item) {
+    }
+}
+
+extension SearchPresenterImpl {
+    private func createSearchViewItem(item: Item) -> SearchViewItem {
+        return SearchViewItem(name: item.name,
+                              eNumber: item.eNumber ?? "")
     }
 }
