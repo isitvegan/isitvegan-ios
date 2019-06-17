@@ -39,7 +39,8 @@ extension CoreDataStorage: StorageReader {
     func findItems(eNumber: String) throws -> [Item] {
         let context = persistentContainer.viewContext
         let request = createFetchRequest()
-        request.predicate = NSPredicate(format: "eNumber BEGINSWITH[cd] %@", "e\(eNumber)")
+        let eNumber = normalizeENumber(eNumber)
+        request.predicate = NSPredicate(format: "eNumber BEGINSWITH[cd] %@", "\(eNumber)")
         return try fetchItems(request, from: context)
     }
 
@@ -61,23 +62,29 @@ extension CoreDataStorage {
         managedItem.eNumber = item.eNumber
         managedItem.state = item.state.rawValue
     }
-    
+
     private func createFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
         return NSFetchRequest<NSFetchRequestResult>(entityName: itemEntityName)
     }
-    
+
     private func fetchItems(_ request: NSFetchRequest<NSFetchRequestResult>,
                             from context: NSManagedObjectContext) throws -> [Item]  {
         let result = try context.fetch(request) as! [ItemManaged]
         return result.map { createItem(fromManaged: $0)! }
     }
-    
+
     private func createItem(fromManaged managedItem: ItemManaged) -> Item? {
         Item(id: managedItem.id!,
              name: managedItem.name!,
              state: Item.State(rawValue: managedItem.state!)!,
              eNumber: managedItem.eNumber,
              description: managedItem.itemDescription!)
+    }
+
+    private func normalizeENumber(_ eNumber: String) -> String {
+        let trimCharacterSet = CharacterSet(charactersIn: "E").union(.whitespaces)
+        let number = eNumber.trimmingCharacters(in: trimCharacterSet)
+        return "E\(number)"
     }
 }
 

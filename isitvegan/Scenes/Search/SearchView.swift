@@ -20,6 +20,11 @@ class SearchViewController: UISplitViewController {
     private weak var refreshControl: UIRefreshControl?
     private var items: [SearchViewItem] = []
     
+    private let searchScopes: [SearchScope] = [
+        SearchScope(buttonTitle: "Search names", kind: .names),
+        SearchScope(buttonTitle: "Search E numbers", kind: .eNumbers),
+    ]
+
     init(controller: SearchController) {
         self.controller = controller
         super.init(nibName: nil, bundle: nil)
@@ -49,21 +54,23 @@ class SearchViewController: UISplitViewController {
         
         tableViewController.navigationItem.title = "Is it Vegan?"
 
-        tableViewController.navigationItem.searchController = UISearchController()
-        tableViewController.navigationItem.searchController?.automaticallyShowsScopeBar = true
-        tableViewController.navigationItem.searchController?.obscuresBackgroundDuringPresentation = false
-        tableViewController.navigationItem.searchController?.searchResultsUpdater = self
-        tableViewController.navigationItem.searchController?.definesPresentationContext = false
+        tableViewController.navigationItem.searchController = createSearchController()
         tableViewController.navigationItem.hidesSearchBarWhenScrolling = false
-        tableViewController.navigationItem.searchController!.searchBar.scopeButtonTitles = [
-            "Search titles",
-            "Search E numbers",
-        ]
 
         let masterViewController = UINavigationController()
         masterViewController.viewControllers = [tableViewController]
         masterViewController.navigationBar.prefersLargeTitles = true
         viewControllers.append(masterViewController)
+    }
+
+    private func createSearchController() -> UISearchController {
+        let searchController = UISearchController()
+        searchController.automaticallyShowsScopeBar = true
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        searchController.definesPresentationContext = false
+        searchController.searchBar.scopeButtonTitles = searchScopes.map { $0.buttonTitle }
+        return searchController
     }
 
     @objc private func handleRefreshControl() {
@@ -116,7 +123,27 @@ extension SearchViewController: UISplitViewControllerDelegate {
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        let query = searchController.searchBar.text!
-        controller.search(name: query)
+        let searchTerm = searchController.searchBar.text!
+        let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
+        let scope = searchScopes[scopeIndex].kind
+
+        switch (scope) {
+        case .names:
+            controller.search(name: searchTerm)
+        case .eNumbers:
+            controller.search(eNumber: searchTerm)
+        }
+    }
+}
+
+extension SearchViewController {
+    private struct SearchScope {
+        let buttonTitle: String
+        let kind: SearchScopeKind
+    }
+
+    private enum SearchScopeKind {
+        case names
+        case eNumbers
     }
 }
