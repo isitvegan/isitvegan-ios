@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CoreData
 
 class DefaultSceneDelegate: UIResponder {
     var window: UIWindow?
@@ -7,19 +8,14 @@ class DefaultSceneDelegate: UIResponder {
 
 extension DefaultSceneDelegate: UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        
-        let (searchController, searchView) = createSearchController()
         window = UIWindow(windowScene: scene as! UIWindowScene)
-        window!.rootViewController = searchView
+        window!.rootViewController = createSearchView()
         window!.makeKeyAndVisible()
-        
-        searchController.listItems()
     }
 }
 
 extension DefaultSceneDelegate {
-    private func createSearchController() -> (SearchController, SearchViewController) {
+    private func createSearchView() -> SearchViewController {
         let searchPresenter = SearchPresenterImpl()
         let searchController = SearchControllerImpl(
             presenter: searchPresenter,
@@ -28,7 +24,7 @@ extension DefaultSceneDelegate {
         )
         let searchView = SearchViewController(controller: searchController)
         searchPresenter.view = searchView
-        return (searchController, searchView)
+        return searchView
     }
     
     private func createItemsStorageUpdater() -> ItemsStorageUpdater {
@@ -37,6 +33,8 @@ extension DefaultSceneDelegate {
     }
     
     private func createCoreDataStorage() -> CoreDataStorage {
-        CoreDataStorage(persistentContainer: (UIApplication.shared.delegate as! AppDelegate).persistentContainer)
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let persistentContainer = delegate.persistentContainer
+        return CoreDataStorage(persistentContainer: persistentContainer)
     }
 }

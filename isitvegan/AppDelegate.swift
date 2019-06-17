@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storageWriter = CoreDataStorage(persistentContainer: persistentContainer)
         let itemsStorageUpdater = ItemsStorageUpdaterImpl(source: itemsLoader, target: storageWriter)
         itemsStorageUpdater.updateItems()
-        storageWriter.deleteAllItems()
     }
     
     private func createPersistentContainer() -> NSPersistentContainer {

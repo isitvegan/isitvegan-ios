@@ -59,8 +59,10 @@ class SearchViewController: UISplitViewController, UISplitViewControllerDelegate
         masterViewController.viewControllers = [tableViewController]
         masterViewController.navigationBar.prefersLargeTitles = true
         viewControllers.append(masterViewController)
+
+        controller.listItems()
     }
-    
+
     func splitViewController(
         _ splitViewController: UISplitViewController,
         collapseSecondary secondaryViewController: UIViewController,
