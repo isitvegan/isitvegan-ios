@@ -56,7 +56,7 @@ extension SqliteStorage: StorageWriter {
                 let query = self.items.insert(
                     self.id <- item.id,
                     self.name <- item.name,
-                    self.itemDescription <- "",
+                    self.itemDescription <- item.description,
                     self.eNumber <- item.eNumber,
                     self.state <- item.state.rawValue
                 )
