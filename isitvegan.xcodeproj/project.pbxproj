@@ -13,6 +13,7 @@
 		450F1FD022B8141000E1708D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F1FCF22B8141000E1708D /* Color.swift */; };
 		450F1FD222B8245A00E1708D /* items.json in Resources */ = {isa = PBXBuildFile; fileRef = 450F1FD122B8245A00E1708D /* items.json */; };
 		450F202722B947FA00E1708D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 450F202622B947FA00E1708D /* SQLite */; };
+		450F202922B9660200E1708D /* SqliteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F202822B9660200E1708D /* SqliteStorage.swift */; };
 		4519CADA22B3842C0079CACE /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4519CAD922B3842C0079CACE /* DetailView.xib */; };
 		4519CADC22B3860A0079CACE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519CADB22B3860A0079CACE /* DetailView.swift */; };
 		454BB37222B77E380069A012 /* StorageWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37122B77E380069A012 /* StorageWriter.swift */; };
@@ -43,6 +44,7 @@
 		450F1FCD22B7D2B800E1708D /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		450F1FCF22B8141000E1708D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		450F1FD122B8245A00E1708D /* items.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = items.json; sourceTree = "<group>"; };
+		450F202822B9660200E1708D /* SqliteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStorage.swift; sourceTree = "<group>"; };
 		4519CAD922B3842C0079CACE /* DetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		4519CADB22B3860A0079CACE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		454BB37122B77E380069A012 /* StorageWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageWriter.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				454BB38122B7C27D0069A012 /* StorageReader.swift */,
 				454BB37122B77E380069A012 /* StorageWriter.swift */,
 				454BB37322B77E430069A012 /* CoreDataStorage.swift */,
+				450F202822B9660200E1708D /* SqliteStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				454BB37A22B78FA30069A012 /* TableCellView.swift in Sources */,
 				454BB37222B77E380069A012 /* StorageWriter.swift in Sources */,
 				455346BD22A2ACD6005127C9 /* DataModel.xcdatamodeld in Sources */,
+				450F202922B9660200E1708D /* SqliteStorage.swift in Sources */,
 				454BB37F22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift in Sources */,
 				450F1FCE22B7D2B800E1708D /* SearchPresenter.swift in Sources */,
 			);

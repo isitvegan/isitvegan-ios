@@ -12,7 +12,7 @@ class ItemsStorageUpdaterImpl {
 
 extension ItemsStorageUpdaterImpl: ItemsStorageUpdater {
     func updateItems(completion: @escaping () -> Void) {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInitiated).async {
             let items = self.itemsLoader.loadItems()
             self.storageWriter.deleteAllItems()
             self.storageWriter.writeItems(items)

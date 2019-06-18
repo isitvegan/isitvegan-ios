@@ -21,7 +21,7 @@ extension DefaultSceneDelegate {
         let searchController = SearchControllerImpl(
             presenter: searchPresenter,
             itemsStorageUpdater: createItemsStorageUpdater(),
-            storageReader: createCoreDataStorage()
+            storageReader: getSqliteStorage()
         )
         let searchView = SearchViewController(controller: searchController)
         searchPresenter.view = searchView
@@ -30,12 +30,11 @@ extension DefaultSceneDelegate {
     
     private func createItemsStorageUpdater() -> ItemsStorageUpdater {
         let itemsLoader = DummyItemsLoader(itemsDeserializer: JsonItemDeserializer(decoder: JSONDecoder()))
-        return ItemsStorageUpdaterImpl(source: itemsLoader, target: createCoreDataStorage())
+        return ItemsStorageUpdaterImpl(source: itemsLoader, target: getSqliteStorage())
     }
     
-    private func createCoreDataStorage() -> CoreDataStorage {
+    private func getSqliteStorage() -> SqliteStorage {
         let delegate = UIApplication.shared.delegate as! AppDelegate
-        let persistentContainer = delegate.persistentContainer
-        return CoreDataStorage(persistentContainer: persistentContainer)
+        return delegate.storage
     }
 }
