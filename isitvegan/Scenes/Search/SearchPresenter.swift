@@ -22,7 +22,19 @@ extension SearchPresenterImpl: SearchPresenter {
 
 extension SearchPresenterImpl {
     private func createSearchViewItem(item: Item) -> SearchViewItem {
-        return SearchViewItem(name: item.name,
+        let stateTitle = titleFor(state: item.state)
+        return SearchViewItem(name: "\(item.name) · \(stateTitle)",
                               eNumber: item.eNumber ?? "")
+    }
+
+    private func titleFor(state: Item.State) -> String {
+        switch (state) {
+        case .vegan:
+            return "Vegan"
+        case .carnist:
+            return "Carnist"
+        case .itDepends:
+            return "It Depends"
+        }
     }
 }

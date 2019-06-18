@@ -26,6 +26,7 @@ extension CoreDataStorage: StorageWriter {
             let fetchRequest = createFetchRequest()
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             try! context.execute(batchDeleteRequest)
+            try! context.save()
         }
     }
 }
@@ -41,6 +42,9 @@ extension CoreDataStorage: StorageReader {
         let request = createFetchRequest()
         let eNumber = normalizeENumber(eNumber)
         request.predicate = NSPredicate(format: "eNumber BEGINSWITH[cd] %@", "\(eNumber)")
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "eNumber", ascending: true)
+        ]
         return try fetchItems(request, from: context)
     }
 
@@ -48,7 +52,10 @@ extension CoreDataStorage: StorageReader {
         let context = persistentContainer.viewContext
         let request = createFetchRequest()
         request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
-        return try fetchItems(request, from: context)
+        let items = try fetchItems(request, from: context)
+        return items.map { ($0, $0.name.lowercased().range(of: name.lowercased())?.lowerBound ?? String.Index(encodedOffset: 1000)) }
+            .sorted(by: { $0.1 < $1.1 })
+            .map({ $0.0 })
     }
 }
 

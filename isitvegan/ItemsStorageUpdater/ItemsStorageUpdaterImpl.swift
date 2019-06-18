@@ -1,3 +1,5 @@
+import Foundation
+
 class ItemsStorageUpdaterImpl {
     private let itemsLoader: ItemsLoader
     private let storageWriter: StorageWriter
@@ -9,9 +11,14 @@ class ItemsStorageUpdaterImpl {
 }
 
 extension ItemsStorageUpdaterImpl: ItemsStorageUpdater {
-    func updateItems() {
-        let items = itemsLoader.loadItems()
-        storageWriter.deleteAllItems()
-        storageWriter.writeItems(items)
+    func updateItems(completion: @escaping () -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            let items = self.itemsLoader.loadItems()
+            self.storageWriter.deleteAllItems()
+            self.storageWriter.writeItems(items)
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
     }
 }

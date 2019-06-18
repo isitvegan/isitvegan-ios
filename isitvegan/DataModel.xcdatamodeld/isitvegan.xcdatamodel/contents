@@ -6,11 +6,6 @@
         <attribute name="itemDescription" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="id"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="118"/>

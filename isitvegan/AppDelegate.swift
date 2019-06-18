@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
         // TODO: only do this on the first launch
-        populateDatabase()
+        // populateDatabase()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let itemsLoader = DummyItemsLoader(itemsDeserializer: JsonItemDeserializer(decoder: JSONDecoder()))
         let storageWriter = CoreDataStorage(persistentContainer: persistentContainer)
         let itemsStorageUpdater = ItemsStorageUpdaterImpl(source: itemsLoader, target: storageWriter)
-        itemsStorageUpdater.updateItems()
+        itemsStorageUpdater.updateItems(completion: {})
     }
     
     private func createPersistentContainer() -> NSPersistentContainer {

@@ -77,10 +77,9 @@ class SearchViewController: UISplitViewController {
     }
 
     @objc private func handleRefreshControl() {
-        DispatchQueue.main.async {
-            self.controller.refreshItems()
+        self.controller.refreshItems(completion: {
             self.refreshControl?.endRefreshing()
-        }
+        })
     }
 }
 

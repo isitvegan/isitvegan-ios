@@ -1,3 +1,3 @@
 protocol ItemsStorageUpdater {
-    func updateItems()
+    func updateItems(completion: @escaping () -> Void)
 }

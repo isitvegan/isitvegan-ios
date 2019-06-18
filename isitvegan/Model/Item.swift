@@ -28,7 +28,7 @@ extension Item.State: Decodable {
             self = .vegan
         case "carnist":
             self = .carnist
-        case "it_depends":
+        case "itDepends":
             self = .itDepends
         default:
             throw ItemStateDecodeError.InvalidVariant(value)

@@ -5,7 +5,7 @@ protocol SearchController {
     
     func search(eNumber: String)
     
-    func refreshItems()
+    func refreshItems(completion: @escaping () -> Void)
 }
 
 class SearchControllerImpl {
@@ -47,9 +47,11 @@ extension SearchControllerImpl: SearchController {
         presentItems()
     }
     
-    func refreshItems() {
-        itemsStorageUpdater.updateItems()
-        presentItems()
+    func refreshItems(completion: @escaping () -> Void) {
+        itemsStorageUpdater.updateItems(completion: {
+            self.presentItems()
+            completion()
+        })
     }
 }
 
