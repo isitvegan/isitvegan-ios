@@ -3,10 +3,19 @@ import UIKit
 struct SearchViewItem {
     let name: String
     let eNumber: String
+    let stateDescription: String
+    let stateImageName: String
+    let stateColor: UIColor
     
-    init(name: String, eNumber: String) {
+    init(name: String, eNumber: String,
+         stateDescription: String,
+         stateImageName: String,
+         stateColor: UIColor) {
         self.name = name
         self.eNumber = eNumber
+        self.stateDescription = stateDescription
+        self.stateImageName = stateImageName
+        self.stateColor = stateColor
     }
 }
 
@@ -101,10 +110,15 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.item]
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        // let nib = UINib(nibName: "TableViewCell", bundle: nil)
+        // let cell = nib.instantiate(withOwner: nil, options: [:]).first! as! TableViewCell
+        let cell = TableViewCell(style: .default, reuseIdentifier: nil)
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel!.text = item.name
-        cell.detailTextLabel?.text = item.eNumber
+        cell.nameLabel.text = item.name
+        cell.eNumberLabel.text = item.eNumber
+        cell.stateImageName = item.stateImageName
+        cell.stateColor = item.stateColor
+        cell.stateLabel.text = item.stateDescription
         return cell
     }
 

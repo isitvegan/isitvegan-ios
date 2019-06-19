@@ -14,6 +14,7 @@
 		450F1FD222B8245A00E1708D /* items.json in Resources */ = {isa = PBXBuildFile; fileRef = 450F1FD122B8245A00E1708D /* items.json */; };
 		450F202722B947FA00E1708D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 450F202622B947FA00E1708D /* SQLite */; };
 		450F202922B9660200E1708D /* SqliteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F202822B9660200E1708D /* SqliteStorage.swift */; };
+		450F202E22BA665B00E1708D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F202C22BA665B00E1708D /* TableViewCell.swift */; };
 		4519CADA22B3842C0079CACE /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4519CAD922B3842C0079CACE /* DetailView.xib */; };
 		4519CADC22B3860A0079CACE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4519CADB22B3860A0079CACE /* DetailView.swift */; };
 		454BB37222B77E380069A012 /* StorageWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37122B77E380069A012 /* StorageWriter.swift */; };
@@ -43,6 +44,7 @@
 		450F1FCF22B8141000E1708D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		450F1FD122B8245A00E1708D /* items.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = items.json; sourceTree = "<group>"; };
 		450F202822B9660200E1708D /* SqliteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStorage.swift; sourceTree = "<group>"; };
+		450F202C22BA665B00E1708D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4519CAD922B3842C0079CACE /* DetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		4519CADB22B3860A0079CACE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		454BB37122B77E380069A012 /* StorageWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageWriter.swift; sourceTree = "<group>"; };
@@ -91,11 +93,20 @@
 		450F1FC822B7D04900E1708D /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				450F202B22BA664400E1708D /* TableCell */,
 				450F1FC922B7D05E00E1708D /* SearchView.swift */,
 				450F1FCB22B7D29300E1708D /* SearchController.swift */,
 				450F1FCD22B7D2B800E1708D /* SearchPresenter.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		450F202B22BA664400E1708D /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				450F202C22BA665B00E1708D /* TableViewCell.swift */,
+			);
+			path = TableCell;
 			sourceTree = "<group>";
 		};
 		454BB37B22B7C0E00069A012 /* ItemsStorageUpdater */ = {
@@ -291,6 +302,7 @@
 				459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */,
 				459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */,
 				454BB37A22B78FA30069A012 /* TableCellView.swift in Sources */,
+				450F202E22BA665B00E1708D /* TableViewCell.swift in Sources */,
 				454BB37222B77E380069A012 /* StorageWriter.swift in Sources */,
 				450F202922B9660200E1708D /* SqliteStorage.swift in Sources */,
 				454BB37F22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift in Sources */,
