@@ -35,7 +35,9 @@ extension SqliteStorage: StorageReader {
     }
 
     func findItems(eNumber eNumberQuery: String) throws -> [Item] {
-        let query = items.filter(eNumber.like("E\(eNumberQuery)%")).order(eNumber)
+        let escapedQuery = escapeLikeWildcard("E\(eNumberQuery)", escape: wildcardEscapeCharacter)
+        let wildcard = eNumber.like("\(escapedQuery)%", escape: wildcardEscapeCharacter)
+        let query = items.filter(wildcard).order(eNumber)
         let itemRows = try connection.prepare(query)
         return itemRows.map { itemFrom(row: $0) }
     }
@@ -63,7 +65,7 @@ extension SqliteStorage: StorageWriter {
             }
         }
     }
-    
+
     func deleteAllItems() {
         try! connection.run(items.delete())
     }
@@ -78,8 +80,16 @@ extension SqliteStorage {
              description: row[itemDescription])
     }
 
+    private func escapeLikeWildcard(_ wildcard: String, escape: Character) -> String {
+        wildcard.replacingOccurrences(of: "\(escape)", with: "\(escape)\(escape)")
+                .replacingOccurrences(of: "%", with: "\(escape)%")
+                .replacingOccurrences(of: "_", with: "\(escape)_")
+    }
+
     private func quoteMatchString(_ string: String) -> String {
         let escaped = string.replacingOccurrences(of: "\"", with: "\"\"")
         return "\"\(escaped)\""
     }
 }
+
+fileprivate let wildcardEscapeCharacter: Character = "\\"
