@@ -41,7 +41,8 @@ extension SqliteStorage: StorageReader {
     }
 
     func findItems(name nameQuery: String) throws -> [Item] {
-        let query = items.filter(name.match("\(nameQuery)*")).order(rank)
+        let quotedQuery = quoteMatchString(nameQuery)
+        let query = items.filter(name.match("\(quotedQuery)*")).order(rank)
         let itemRows = try connection.prepare(query)
         return itemRows.map { itemFrom(row: $0) }
     }
@@ -49,8 +50,6 @@ extension SqliteStorage: StorageReader {
 
 extension SqliteStorage: StorageWriter {
     func writeItems(_ items: [Item]) {
-        let dispatchGroup = DispatchGroup()
-        
         try! connection.transaction {
             for item in items {
                 let query = self.items.insert(
@@ -63,8 +62,6 @@ extension SqliteStorage: StorageWriter {
                 try! self.connection.run(query)
             }
         }
-        
-        dispatchGroup.wait()
     }
     
     func deleteAllItems() {
@@ -79,5 +76,10 @@ extension SqliteStorage {
              state: Item.State(rawValue: row[state])!,
              eNumber: row[eNumber],
              description: row[itemDescription])
+    }
+
+    private func quoteMatchString(_ string: String) -> String {
+        let escaped = string.replacingOccurrences(of: "\"", with: "\"\"")
+        return "\"\(escaped)\""
     }
 }
