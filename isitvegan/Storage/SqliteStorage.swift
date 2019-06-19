@@ -23,8 +23,7 @@ class SqliteStorage {
             .column(itemDescription, [.unindexed])
             .column(eNumber, [.unindexed])
             .column(state, [.unindexed])
-        try connection.run(items.drop(ifExists: true))
-        try connection.run(items.create(.FTS5(config)))
+        try connection.run(items.create(.FTS5(config), ifNotExists: true))
     }
 }
 
