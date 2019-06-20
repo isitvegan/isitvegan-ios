@@ -1,3 +1,5 @@
+import Foundation
+
 protocol SearchController {
     func listItems()
     
@@ -13,6 +15,7 @@ class SearchControllerImpl {
     private let itemsStorageUpdater: ItemsStorageUpdater
     private let storageReader: StorageReader
     private var filter: Filter = .none
+    private var itemsPresentedAtLeastOnce: Bool = false
 
     init(presenter: SearchPresenter,
          itemsStorageUpdater: ItemsStorageUpdater,
@@ -25,28 +28,18 @@ class SearchControllerImpl {
 
 extension SearchControllerImpl: SearchController {
     func listItems() {
-        filter = .none
-        presentItems()
+        updateFilter(newFilter: .none)
     }
-    
+
     func search(name: String) {
-        if (name.isEmpty) {
-            filter = .none
-        } else {
-            filter = .name(name)
-        }
-        presentItems()
+        updateFilter(newFilter: name.isEmpty ? .none : .name(name))
     }
 
     func search(eNumber: String) {
-        if (eNumber.isEmpty) {
-            filter = .none
-        } else {
-            filter = .eNumber(eNumber)
-        }
-        presentItems()
+        let normalizedENumber = normalizeENumber(eNumber)
+        updateFilter(newFilter: normalizedENumber.isEmpty ? .none : .eNumber(normalizedENumber))
     }
-    
+
     func refreshItems(completion: @escaping () -> Void) {
         itemsStorageUpdater.updateItems(completion: {
             self.presentItems()
@@ -56,7 +49,15 @@ extension SearchControllerImpl: SearchController {
 }
 
 extension SearchControllerImpl {
+    private func updateFilter(newFilter: Filter) {
+        if newFilter != filter || !itemsPresentedAtLeastOnce {
+            filter = newFilter
+            presentItems()
+        }
+    }
+
     private func presentItems() {
+        self.itemsPresentedAtLeastOnce = true
         presenter.present(items: fetchItems())
     }
         
@@ -71,7 +72,12 @@ extension SearchControllerImpl {
         }
     }
     
-    private enum Filter {
+    private func normalizeENumber(_ eNumber: String) -> String {
+        let trimCharacterSet = CharacterSet(charactersIn: "E").union(.whitespaces)
+        return eNumber.trimmingCharacters(in: trimCharacterSet)
+    }
+
+    private enum Filter: Equatable {
         case none
         case name(String)
         case eNumber(String)
