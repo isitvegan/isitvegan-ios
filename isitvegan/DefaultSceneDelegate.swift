@@ -30,8 +30,11 @@ extension DefaultSceneDelegate {
     }
     
     private func createItemsStorageUpdater() -> ItemsStorageUpdater {
-        let itemsLoader = DummyItemsLoader(itemsDeserializer: JsonItemDeserializer(decoder: JSONDecoder()))
-        return ItemsStorageUpdaterImpl(source: itemsLoader, target: getSqliteStorage())
+        return ItemsStorageUpdaterImpl(source: createItemsLoader(), target: getSqliteStorage())
+    }
+
+    private func createItemsLoader() -> ItemsLoader {
+        NetworkItemsLoader(itemsDeserializer: JsonItemDeserializer(decoder: JSONDecoder()))
     }
     
     private func getSqliteStorage() -> SqliteStorage {

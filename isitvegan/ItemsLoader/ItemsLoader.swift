@@ -1,3 +1,3 @@
 protocol ItemsLoader {
-    func loadItems() -> [Item]
+    func loadItems(completion: @escaping ([Item]) -> Void)
 }

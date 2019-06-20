@@ -9,9 +9,10 @@ class DummyItemsLoader {
 }
 
 extension DummyItemsLoader: ItemsLoader {
-    func loadItems() -> [Item] {
+    func loadItems(completion: @escaping ([Item]) -> Void) {
         let filePath = Bundle.main.path(forResource: "items", ofType: "json")!
         let fileContents = try! String(contentsOfFile: filePath)
-        return try! self.itemsDeserializer.deserializeItems(from: fileContents.data(using: .utf8)!)
+        let items = try! self.itemsDeserializer.deserializeItems(from: fileContents.data(using: .utf8)!)
+        completion(items)
     }
 }
