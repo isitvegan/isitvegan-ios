@@ -22,7 +22,6 @@
 		454BB37F22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37E22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift */; };
 		454BB38222B7C27D0069A012 /* StorageReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB38122B7C27D0069A012 /* StorageReader.swift */; };
 		455346B522A2ACD6005127C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455346B422A2ACD6005127C9 /* AppDelegate.swift */; };
-		455346B722A2ACD6005127C9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455346B622A2ACD6005127C9 /* RootViewController.swift */; };
 		455346BF22A2ACD7005127C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 455346BE22A2ACD7005127C9 /* Assets.xcassets */; };
 		455346C222A2ACD7005127C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455346C022A2ACD7005127C9 /* LaunchScreen.storyboard */; };
 		458DB17022B2C7CB00DB43F8 /* DefaultSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */; };
@@ -51,7 +50,6 @@
 		454BB38122B7C27D0069A012 /* StorageReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageReader.swift; sourceTree = "<group>"; };
 		455346B122A2ACD6005127C9 /* isitvegan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = isitvegan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		455346B422A2ACD6005127C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		455346B622A2ACD6005127C9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		455346BE22A2ACD7005127C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		455346C122A2ACD7005127C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		455346C322A2ACD7005127C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				459EE89A22A2B96500F976FA /* Spotlight */,
 				459EE89722A2B0FB00F976FA /* Model */,
 				455346B422A2ACD6005127C9 /* AppDelegate.swift */,
-				455346B622A2ACD6005127C9 /* RootViewController.swift */,
 				455346BE22A2ACD7005127C9 /* Assets.xcassets */,
 				455346C022A2ACD7005127C9 /* LaunchScreen.storyboard */,
 				455346C322A2ACD7005127C9 /* Info.plist */,
@@ -286,7 +283,6 @@
 				459EE8A322A2E7F000F976FA /* JsonItemDeserializer.swift in Sources */,
 				459EE8A622A2E8E800F976FA /* ItemsLoader.swift in Sources */,
 				459EE89922A2B10800F976FA /* Item.swift in Sources */,
-				455346B722A2ACD6005127C9 /* RootViewController.swift in Sources */,
 				455346B522A2ACD6005127C9 /* AppDelegate.swift in Sources */,
 				458DB17022B2C7CB00DB43F8 /* DefaultSceneDelegate.swift in Sources */,
 				450F1FCC22B7D29300E1708D /* SearchController.swift in Sources */,
