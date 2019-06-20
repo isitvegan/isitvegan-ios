@@ -23,7 +23,8 @@ extension DefaultSceneDelegate {
             itemsStorageUpdater: createItemsStorageUpdater(),
             storageReader: getSqliteStorage()
         )
-        let searchView = SearchViewController(controller: searchController)
+        let searchView = SearchViewController(controller: searchController,
+                                              cellClass: TableViewCell.self)
         searchPresenter.view = searchView
         return searchView
     }

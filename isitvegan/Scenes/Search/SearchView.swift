@@ -27,6 +27,7 @@ protocol SearchView {
 
 class SearchViewController: UISplitViewController {
     private let controller: SearchController
+    private let cellClass: AnyClass
     private weak var tableView: UITableView?
     private weak var refreshControl: UIRefreshControl?
     private var items: [SearchViewItem] = []
@@ -36,8 +37,9 @@ class SearchViewController: UISplitViewController {
         SearchScope(buttonTitle: "Search E numbers", kind: .eNumbers, keyboardType: .numberPad),
     ]
 
-    init(controller: SearchController) {
+    init(controller: SearchController, cellClass: AnyClass) {
         self.controller = controller
+        self.cellClass = cellClass
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -58,7 +60,8 @@ class SearchViewController: UISplitViewController {
         tableView = tableViewController.view as? UITableView
         tableView?.dataSource = self
         tableView?.allowsSelection = false
-        
+        tableView?.register(self.cellClass, forCellReuseIdentifier: cellReuseIdentifier)
+
         tableViewController.refreshControl = UIRefreshControl()
         tableViewController.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
         refreshControl = tableViewController.refreshControl
@@ -110,16 +113,13 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.item]
-        // let nib = UINib(nibName: "TableViewCell", bundle: nil)
-        // let cell = nib.instantiate(withOwner: nil, options: [:]).first! as! TableViewCell
-        let cell = TableViewCell(style: .default, reuseIdentifier: nil)
-        cell.accessoryType = .disclosureIndicator
-        cell.nameLabel.text = item.name
-        cell.eNumberLabel.text = item.eNumber
-        cell.stateImageName = item.stateImageName
-        cell.stateColor = item.stateColor
-        cell.stateLabel.text = item.stateDescription
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ItemTableViewCell
+        cell.setName(item.name)
+        cell.setStateImageName(item.stateImageName)
+        cell.setStateDescription(item.stateDescription)
+        cell.setStateColor(item.stateColor)
+        cell.setENumber(item.eNumber)
+        return cell.asUITableViewCell()
     }
 
     func tableView(_ tableView: UITableView,
@@ -173,3 +173,5 @@ extension SearchViewController {
         case eNumbers
     }
 }
+
+fileprivate let cellReuseIdentifier = "ItemCell"
