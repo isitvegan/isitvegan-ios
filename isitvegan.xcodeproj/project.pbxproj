@@ -11,7 +11,6 @@
 		450F1FCC22B7D29300E1708D /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F1FCB22B7D29300E1708D /* SearchController.swift */; };
 		450F1FCE22B7D2B800E1708D /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F1FCD22B7D2B800E1708D /* SearchPresenter.swift */; };
 		450F1FD022B8141000E1708D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F1FCF22B8141000E1708D /* Color.swift */; };
-		450F1FD222B8245A00E1708D /* items.json in Resources */ = {isa = PBXBuildFile; fileRef = 450F1FD122B8245A00E1708D /* items.json */; };
 		450F202722B947FA00E1708D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 450F202622B947FA00E1708D /* SQLite */; };
 		450F202922B9660200E1708D /* SqliteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F202822B9660200E1708D /* SqliteStorage.swift */; };
 		450F202E22BA665B00E1708D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F202C22BA665B00E1708D /* TableViewCell.swift */; };
@@ -266,7 +265,6 @@
 			files = (
 				455346C222A2ACD7005127C9 /* LaunchScreen.storyboard in Resources */,
 				455346BF22A2ACD7005127C9 /* Assets.xcassets in Resources */,
-				450F1FD222B8245A00E1708D /* items.json in Resources */,
 				4519CADA22B3842C0079CACE /* DetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
