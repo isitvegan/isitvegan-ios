@@ -20,7 +20,7 @@ struct SearchViewItem {
 }
 
 protocol SearchView {
-    func listItems(items: [SearchViewItem])
+    func listItems(items: [SearchViewItem], itemsNotShownDueToLimit: Int)
 
     func showItem(item: Item)
 }
@@ -30,7 +30,9 @@ class SearchViewController: UISplitViewController {
     private let cellClass: AnyClass
     private weak var tableView: UITableView?
     private weak var refreshControl: UIRefreshControl?
+    private var tableFooterView: UILabel?
     private var items: [SearchViewItem] = []
+    private var itemsNotShownDueToLimit: Int = 0
     
     private let searchScopes: [SearchScope] = [
         SearchScope(buttonTitle: "Search names", kind: .names, keyboardType: .default),
@@ -55,7 +57,7 @@ class SearchViewController: UISplitViewController {
         delegate = self
         preferredDisplayMode = .allVisible
         
-        let tableViewController = UITableViewController()
+        let tableViewController = UITableViewController(style: .grouped)
 
         tableView = tableViewController.view as? UITableView
         tableView?.dataSource = self
@@ -96,9 +98,10 @@ class SearchViewController: UISplitViewController {
 }
 
 extension SearchViewController: SearchView {
-    func listItems(items: [SearchViewItem]) {
+    func listItems(items: [SearchViewItem], itemsNotShownDueToLimit: Int) {
         self.items = items
-        self.tableView?.reloadData()
+        self.itemsNotShownDueToLimit = itemsNotShownDueToLimit
+        tableView?.reloadData()
     }
 
     func showItem(item: Item) {
@@ -120,6 +123,17 @@ extension SearchViewController: UITableViewDataSource {
         cell.setStateColor(item.stateColor)
         cell.setENumber(item.eNumber)
         return cell.asUITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch itemsNotShownDueToLimit {
+        case 0:
+            return nil
+        case 1:
+            return "1 additional item is not show"
+        default:
+            return "\(itemsNotShownDueToLimit) additional items are not shown"
+        }
     }
 
     func tableView(_ tableView: UITableView,

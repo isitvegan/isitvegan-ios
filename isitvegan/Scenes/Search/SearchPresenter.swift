@@ -3,7 +3,7 @@ import UIKit
 protocol SearchPresenter {
     var view: SearchView! { get set }
     
-    func present(items: [Item])
+    func present(items: [Item], totalItemsWithoutLimit: Int)
 
     func present(item: Item)
 }
@@ -13,9 +13,10 @@ class SearchPresenterImpl {
 }
 
 extension SearchPresenterImpl: SearchPresenter {
-    func present(items: [Item]) {
+    func present(items: [Item], totalItemsWithoutLimit: Int) {
         let viewItems = items.map(createSearchViewItem)
-        self.view.listItems(items: viewItems)
+        let itemsNotShownDueToLimit = totalItemsWithoutLimit - items.count
+        view.listItems(items: viewItems, itemsNotShownDueToLimit: itemsNotShownDueToLimit)
     }
 
     func present(item: Item) {

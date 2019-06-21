@@ -58,17 +58,18 @@ extension SearchControllerImpl {
 
     private func presentItems() {
         self.itemsPresentedAtLeastOnce = true
-        presenter.present(items: fetchItems())
+        let result = fetchItems()
+        presenter.present(items: result.items, totalItemsWithoutLimit: result.totalItemsWithoutLimit)
     }
         
-    private func fetchItems() -> [Item] {
+    private func fetchItems() -> StorageReaderResult {
         switch (filter) {
         case .none:
-            return try! storageReader.getAllItems()
+            return try! storageReader.getAllItems(limit: maxItemsToBeShown)
         case .name(let name):
-            return try! storageReader.findItems(name: name)
+            return try! storageReader.findItems(name: name, limit: maxItemsToBeShown)
         case .eNumber(let eNumber):
-            return try! storageReader.findItems(eNumber: eNumber)
+            return try! storageReader.findItems(eNumber: eNumber, limit: maxItemsToBeShown)
         }
     }
     
@@ -83,3 +84,5 @@ extension SearchControllerImpl {
         case eNumber(String)
     }
 }
+
+fileprivate let maxItemsToBeShown = 50

@@ -28,24 +28,30 @@ class SqliteStorage {
 }
 
 extension SqliteStorage: StorageReader {
-    func getAllItems() throws -> [Item] {
-        let itemRows = try connection.prepare(items.order(name))
-        return itemRows.map { itemFrom(row: $0) }
+    func getAllItems(limit: Int) throws -> StorageReaderResult {
+        let itemRows = try connection.prepare(items.order(name).limit(limit))
+        let totalItemsWithoutLimit = try connection.scalar(items.select(id.count))
+        let items = itemRows.map { itemFrom(row: $0) }
+        return StorageReaderResult(items: items, totalItemsWithoutLimit: totalItemsWithoutLimit)
     }
 
-    func findItems(eNumber eNumberQuery: String) throws -> [Item] {
+    func findItems(eNumber eNumberQuery: String, limit: Int) throws -> StorageReaderResult {
         let escapedQuery = escapeLikeWildcard("E\(eNumberQuery)", escape: wildcardEscapeCharacter)
         let wildcard = eNumber.like("\(escapedQuery)%", escape: wildcardEscapeCharacter)
         let query = items.filter(wildcard).order(eNumber)
-        let itemRows = try connection.prepare(query)
-        return itemRows.map { itemFrom(row: $0) }
+        let itemRows = try connection.prepare(query.limit(limit))
+        let totalItemsWithoutLimit = try connection.scalar(query.select(id.count))
+        let items = itemRows.map { itemFrom(row: $0) }
+        return StorageReaderResult(items: items, totalItemsWithoutLimit: totalItemsWithoutLimit)
     }
 
-    func findItems(name nameQuery: String) throws -> [Item] {
+    func findItems(name nameQuery: String, limit: Int) throws -> StorageReaderResult {
         let quotedQuery = quoteMatchString(nameQuery)
         let query = items.filter(name.match("\(quotedQuery)*")).order(rank)
-        let itemRows = try connection.prepare(query)
-        return itemRows.map { itemFrom(row: $0) }
+        let itemRows = try connection.prepare(query.limit(limit))
+        let totalItemsWithoutLimit = try connection.scalar(query.select(id.count))
+        let items = itemRows.map { itemFrom(row: $0) }
+        return StorageReaderResult(items: items, totalItemsWithoutLimit: totalItemsWithoutLimit)
     }
 }
 
