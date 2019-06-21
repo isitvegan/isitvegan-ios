@@ -1,11 +1,3 @@
-//
-//  TableViewCell.swift
-//  isitvegan
-//
-//  Created by Ruben on 19/06/2019.
-//  Copyright © 2019 Ruben Schmidmeister. All rights reserved.
-//
-
 import UIKit
 
 protocol ItemTableViewCell {
