@@ -29,29 +29,20 @@ class SqliteStorage {
 
 extension SqliteStorage: StorageReader {
     func getAllItems(limit: Int) throws -> StorageReaderResult {
-        let itemRows = try connection.prepare(items.order(name).limit(limit))
-        let totalItemsWithoutLimit = try connection.scalar(items.select(id.count))
-        let items = itemRows.map { itemFrom(row: $0) }
-        return StorageReaderResult(items: items, totalItemsWithoutLimit: totalItemsWithoutLimit)
+        return try findItemsBy(query: items.order(name), limit: limit)
     }
 
     func findItems(eNumber eNumberQuery: String, limit: Int) throws -> StorageReaderResult {
         let escapedQuery = escapeLikeWildcard("E\(eNumberQuery)", escape: wildcardEscapeCharacter)
         let wildcard = eNumber.like("\(escapedQuery)%", escape: wildcardEscapeCharacter)
         let query = items.filter(wildcard).order(eNumber)
-        let itemRows = try connection.prepare(query.limit(limit))
-        let totalItemsWithoutLimit = try connection.scalar(query.select(id.count))
-        let items = itemRows.map { itemFrom(row: $0) }
-        return StorageReaderResult(items: items, totalItemsWithoutLimit: totalItemsWithoutLimit)
+        return try findItemsBy(query: query, limit: limit)
     }
 
     func findItems(name nameQuery: String, limit: Int) throws -> StorageReaderResult {
         let quotedQuery = quoteMatchString(nameQuery)
         let query = items.filter(name.match("\(quotedQuery)*")).order(rank)
-        let itemRows = try connection.prepare(query.limit(limit))
-        let totalItemsWithoutLimit = try connection.scalar(query.select(id.count))
-        let items = itemRows.map { itemFrom(row: $0) }
-        return StorageReaderResult(items: items, totalItemsWithoutLimit: totalItemsWithoutLimit)
+        return try findItemsBy(query: query, limit: limit)
     }
 }
 
@@ -77,6 +68,13 @@ extension SqliteStorage: StorageWriter {
 }
 
 extension SqliteStorage {
+    private func findItemsBy(query: VirtualTable, limit: Int) throws -> StorageReaderResult {
+        let itemRows = try connection.prepare(query.limit(limit))
+        let totalItemsWithoutLimit = try connection.scalar(query.select(id.count))
+        let items = itemRows.map { itemFrom(row: $0) }
+        return StorageReaderResult(items: items, totalItemsWithoutLimit: totalItemsWithoutLimit)
+    }
+
     private func itemFrom(row: Row) -> Item {
         Item(id: row[id],
              name: row[name],
