@@ -23,7 +23,7 @@ struct SearchViewItem {
 protocol SearchView {
     func listItems(items: [SearchViewItem], itemsNotShownDueToLimit: Int)
 
-    func showDetailView(_ detailView: DetailView)
+    func showDetailView(_ detailView: UIViewController)
 }
 
 class SearchViewController: UISplitViewController {
@@ -109,9 +109,8 @@ extension SearchViewController: SearchView {
         tableView?.reloadData()
     }
     
-    func showDetailView(_ detailView: DetailView) {
-        // present(UINavigationController(rootViewController: detailView.asUIViewController()), animated: true)
-        showDetailViewController(detailView.asUIViewController(), sender: nil)
+    func showDetailView(_ detailView: UIViewController) {
+        showDetailViewController(detailView, sender: nil)
     }
 }
 

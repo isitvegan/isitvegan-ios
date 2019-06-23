@@ -26,7 +26,7 @@ extension SearchPresenterImpl: SearchPresenter {
 
     func presentDetail(item: Item) {
         let detailView = createDetailView(item)
-        view.showDetailView(detailView)
+        view.showDetailView(detailView.asUIViewController())
     }
 }
 
