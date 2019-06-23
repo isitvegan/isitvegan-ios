@@ -5,11 +5,16 @@ protocol SearchPresenter {
     
     func present(items: [Item], totalItemsWithoutLimit: Int)
 
-    func present(item: Item)
+    func presentDetail(item: Item)
 }
 
 class SearchPresenterImpl {
+    private let createDetailView: (_ item: Item) -> DetailView
     var view: SearchView!
+    
+    init(createDetailView: @escaping (_ item: Item) -> DetailView) {
+        self.createDetailView = createDetailView
+    }
 }
 
 extension SearchPresenterImpl: SearchPresenter {
@@ -19,7 +24,9 @@ extension SearchPresenterImpl: SearchPresenter {
         view.listItems(items: viewItems, itemsNotShownDueToLimit: itemsNotShownDueToLimit)
     }
 
-    func present(item: Item) {
+    func presentDetail(item: Item) {
+        let detailView = createDetailView(item)
+        view.showDetailView(detailView)
     }
 }
 
@@ -62,7 +69,7 @@ extension SearchPresenterImpl {
         case .carnist:
             return .systemRed
         case .itDepends:
-            return .systemYellow
+            return .secondaryLabel
         }
     }
 }

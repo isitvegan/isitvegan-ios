@@ -8,6 +8,8 @@ protocol SearchController {
     func search(eNumber: String)
     
     func refreshItems(completion: @escaping () -> Void)
+    
+    func showDetail(itemIndex: Int)
 }
 
 class SearchControllerImpl {
@@ -15,7 +17,7 @@ class SearchControllerImpl {
     private let itemsStorageUpdater: ItemsStorageUpdater
     private let storageReader: StorageReader
     private var filter: Filter = .none
-    private var itemsPresentedAtLeastOnce: Bool = false
+    private var items: [Item]?
 
     init(presenter: SearchPresenter,
          itemsStorageUpdater: ItemsStorageUpdater,
@@ -27,6 +29,11 @@ class SearchControllerImpl {
 }
 
 extension SearchControllerImpl: SearchController {
+    func showDetail(itemIndex: Int) {
+        let item = items![itemIndex]
+        presenter.presentDetail(item: item)
+    }
+    
     func listItems() {
         updateFilter(newFilter: .none)
     }
@@ -50,15 +57,15 @@ extension SearchControllerImpl: SearchController {
 
 extension SearchControllerImpl {
     private func updateFilter(newFilter: Filter) {
-        if newFilter != filter || !itemsPresentedAtLeastOnce {
+        if newFilter != filter || items == nil {
             filter = newFilter
             presentItems()
         }
     }
 
     private func presentItems() {
-        self.itemsPresentedAtLeastOnce = true
         let result = fetchItems()
+        items = result.items
         presenter.present(items: result.items, totalItemsWithoutLimit: result.totalItemsWithoutLimit)
     }
         

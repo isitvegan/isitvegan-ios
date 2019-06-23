@@ -17,7 +17,7 @@ extension DefaultSceneDelegate: UIWindowSceneDelegate {
 
 extension DefaultSceneDelegate {
     private func createSearchView() -> SearchViewController {
-        let searchPresenter = SearchPresenterImpl()
+        let searchPresenter = SearchPresenterImpl(createDetailView: createDetailView)
         let searchController = SearchControllerImpl(
             presenter: searchPresenter,
             itemsStorageUpdater: createItemsStorageUpdater(),
@@ -29,6 +29,14 @@ extension DefaultSceneDelegate {
         return searchView
     }
     
+    private func createDetailView(_ item: Item) -> DetailView {
+        let presenter = DetailPresenterImpl()
+        let controller = DetailControllerImpl(presenter: presenter)
+        let view = DetailViewController(controller: controller, item: item)
+        presenter.view = view
+        return view
+    }
+
     private func createItemsStorageUpdater() -> ItemsStorageUpdater {
         return ItemsStorageUpdaterImpl(source: createItemsLoader(), target: getSqliteStorage())
     }

@@ -7,7 +7,8 @@ struct SearchViewItem {
     let stateImageName: String
     let stateColor: UIColor
     
-    init(name: String, eNumber: String,
+    init(name: String,
+         eNumber: String,
          stateDescription: String,
          stateImageName: String,
          stateColor: UIColor) {
@@ -22,15 +23,17 @@ struct SearchViewItem {
 protocol SearchView {
     func listItems(items: [SearchViewItem], itemsNotShownDueToLimit: Int)
 
-    func showItem(item: Item)
+    func showDetailView(_ detailView: DetailView)
 }
 
 class SearchViewController: UISplitViewController {
     private let controller: SearchController
     private let cellClass: AnyClass
+
     private weak var tableView: UITableView?
     private weak var refreshControl: UIRefreshControl?
     private var tableFooterView: UILabel?
+
     private var items: [SearchViewItem] = []
     private var itemsNotShownDueToLimit: Int = 0
     
@@ -39,7 +42,8 @@ class SearchViewController: UISplitViewController {
         SearchScope(buttonTitle: "Search E numbers", kind: .eNumbers, keyboardType: .numberPad),
     ]
 
-    init(controller: SearchController, cellClass: AnyClass) {
+    init(controller: SearchController,
+         cellClass: AnyClass) {
         self.controller = controller
         self.cellClass = cellClass
         super.init(nibName: nil, bundle: nil)
@@ -61,7 +65,7 @@ class SearchViewController: UISplitViewController {
 
         tableView = tableViewController.view as? UITableView
         tableView?.dataSource = self
-        tableView?.allowsSelection = false
+        tableView?.delegate = self
         tableView?.register(self.cellClass, forCellReuseIdentifier: cellReuseIdentifier)
 
         tableViewController.refreshControl = UIRefreshControl()
@@ -76,6 +80,7 @@ class SearchViewController: UISplitViewController {
         let masterViewController = UINavigationController()
         masterViewController.viewControllers = [tableViewController]
         masterViewController.navigationBar.prefersLargeTitles = true
+
         viewControllers.append(masterViewController)
     }
 
@@ -103,8 +108,10 @@ extension SearchViewController: SearchView {
         self.itemsNotShownDueToLimit = itemsNotShownDueToLimit
         tableView?.reloadData()
     }
-
-    func showItem(item: Item) {
+    
+    func showDetailView(_ detailView: DetailView) {
+        // present(UINavigationController(rootViewController: detailView.asUIViewController()), animated: true)
+        showDetailViewController(detailView.asUIViewController(), sender: nil)
     }
 }
 
@@ -139,6 +146,13 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        controller.showDetail(itemIndex: indexPath.item)
     }
 }
 
