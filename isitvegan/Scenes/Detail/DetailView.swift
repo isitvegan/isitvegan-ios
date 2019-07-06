@@ -30,6 +30,7 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
         
         let scrollView = UIScrollView(frame: view.frame)
         view.addSubview(scrollView)
