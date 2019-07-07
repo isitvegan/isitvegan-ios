@@ -10,7 +10,8 @@ class DetailPresenterImpl {
 
 extension DetailPresenterImpl: DetailPresenter {
     func present(item: Item) {
-        let viewItem = DetailViewItem(name: item.name, description: item.description)
+        let description = item.description.replacingOccurrences(of: "\n", with: " ")
+        let viewItem = DetailViewItem(name: item.name, description: description)
         view.show(item: viewItem)
     }
 }

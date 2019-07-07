@@ -20,9 +20,10 @@ class TableViewCell: UITableViewCell {
 
         accessoryType = .disclosureIndicator
 
-        stateLabel.font = stateLabel.font.withSize(14)
+        nameLabel.font = .preferredFont(forTextStyle: .body)
+        stateLabel.font = .preferredFont(forTextStyle: .footnote)
         eNumberLabel.textColor = .secondaryLabel
-        eNumberLabel.font = eNumberLabel.font.withSize(14)
+        eNumberLabel.font = .preferredFont(forTextStyle: .footnote)
         stateImage.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         stateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
