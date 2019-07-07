@@ -13,7 +13,7 @@ protocol SearchController {
 }
 
 class SearchControllerImpl {
-    private let presenter: SearchPresenter
+    private var presenter: SearchPresenter
     private let itemsStorageUpdater: ItemsStorageUpdater
     private let storageReader: StorageReader
     private var filter: Filter = .none
@@ -25,6 +25,10 @@ class SearchControllerImpl {
         self.presenter = presenter
         self.itemsStorageUpdater = itemsStorageUpdater
         self.storageReader = storageReader
+
+        self.presenter.itemByIndex = { index in
+            self.items![index]
+        }
     }
 }
 

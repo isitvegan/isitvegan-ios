@@ -21,12 +21,16 @@ struct SearchViewItem {
 }
 
 protocol SearchView {
-    func listItems(items: [SearchViewItem], itemsNotShownDueToLimit: Int)
+    func listItems(items: [SearchViewItem],
+                   itemsNotShownDueToLimit: Int,
+                   createItemPreviewView: @escaping (_ itemIndex: Int) -> UIViewController)
 
     func showDetailView(_ detailView: UIViewController)
 }
 
 class SearchViewController: UISplitViewController {
+    var createItemPreviewView: ((_ itemIndex: Int) -> UIViewController)?
+
     private let controller: SearchController
     private let cellClass: AnyClass
 
@@ -103,9 +107,12 @@ class SearchViewController: UISplitViewController {
 }
 
 extension SearchViewController: SearchView {
-    func listItems(items: [SearchViewItem], itemsNotShownDueToLimit: Int) {
+    func listItems(items: [SearchViewItem],
+                   itemsNotShownDueToLimit: Int,
+                   createItemPreviewView: @escaping (_ itemIndex: Int) -> UIViewController) {
         self.items = items
         self.itemsNotShownDueToLimit = itemsNotShownDueToLimit
+        self.createItemPreviewView = createItemPreviewView
         tableView?.reloadData()
     }
     
@@ -145,6 +152,29 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView,
+                   contextMenuConfigurationForRowAt indexPath: IndexPath,
+                   point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: {
+                self.createItemPreviewView!(indexPath.item)
+            },
+            actionProvider: { _ in
+                self.createContextMenu(itemIndex: indexPath.item)
+            }
+        )
+    }
+}
+
+extension SearchViewController {
+    private func createContextMenu(itemIndex: Int) -> UIMenu {
+        let show = UIAction(__title: "Show", image: UIImage(systemName: "eye"), identifier: nil,  handler: {_ in
+            self.controller.showDetail(itemIndex: itemIndex)
+        })
+        return UIMenu(__title: "", image: nil, identifier: nil, children: [show])
     }
 }
 

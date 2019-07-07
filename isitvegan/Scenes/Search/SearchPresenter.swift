@@ -2,6 +2,7 @@ import UIKit
 
 protocol SearchPresenter {
     var view: SearchView! { get set }
+    var itemByIndex: ((_ itemIndex: Int) -> Item)! { get set }
     
     func present(items: [Item], totalItemsWithoutLimit: Int)
 
@@ -9,9 +10,11 @@ protocol SearchPresenter {
 }
 
 class SearchPresenterImpl {
-    private let createDetailView: (_ item: Item) -> DetailView
     var view: SearchView!
-    
+    var itemByIndex: ((_ index: Int) -> Item)!
+
+    private let createDetailView: (_ item: Item) -> DetailView
+
     init(createDetailView: @escaping (_ item: Item) -> DetailView) {
         self.createDetailView = createDetailView
     }
@@ -21,12 +24,14 @@ extension SearchPresenterImpl: SearchPresenter {
     func present(items: [Item], totalItemsWithoutLimit: Int) {
         let viewItems = items.map(createSearchViewItem)
         let itemsNotShownDueToLimit = totalItemsWithoutLimit - items.count
-        view.listItems(items: viewItems, itemsNotShownDueToLimit: itemsNotShownDueToLimit)
+        view?.listItems(items: viewItems,
+                        itemsNotShownDueToLimit: itemsNotShownDueToLimit,
+                        createItemPreviewView: createItemPreviewView)
     }
 
     func presentDetail(item: Item) {
         let detailView = createDetailView(item)
-        view.showDetailView(detailView.asUIViewController())
+        view?.showDetailView(detailView.asUIViewController())
     }
 }
 
@@ -38,6 +43,10 @@ extension SearchPresenterImpl {
                               stateDescription: stateTitle,
                               stateImageName: imageFor(state: item.state),
                               stateColor: colorFor(state: item.state))
+    }
+
+    private func createItemPreviewView(_ itemIndex: Int) -> UIViewController {
+        createDetailView(itemByIndex(itemIndex)).asUIViewController()
     }
 
     private func titleFor(state: Item.State) -> String {
