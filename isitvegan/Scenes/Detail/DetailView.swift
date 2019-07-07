@@ -32,35 +32,37 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
         
-        let scrollView = UIScrollView(frame: view.frame)
+        let scrollView = createScrollView()
         view.addSubview(scrollView)
         
-        let verticalStack = UIStackView()
+        let verticalStack = createVerticalStack()
         scrollView.addSubview(verticalStack)
-        verticalStack.axis = .vertical
-        verticalStack.distribution = .equalSpacing
-        verticalStack.translatesAutoresizingMaskIntoConstraints = false
-        verticalStack.spacing = 10
-        verticalStack.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        verticalStack.isLayoutMarginsRelativeArrangement = true
-        
+
         titleLabel = UILabel()
-        titleLabel.font = .systemFont(ofSize: 34, weight: .bold)
+        titleLabel.font = .preferredFont(forTextStyle: .title1)
         titleLabel.textColor = .label
         titleLabel.numberOfLines = 0
-        scrollView.addSubview(titleLabel)
         
         descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = .preferredFont(forTextStyle: .body)
 
         verticalStack.addArrangedSubview(titleLabel)
         verticalStack.addArrangedSubview(descriptionLabel)
 
         view.addConstraints([
-            verticalStack.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            verticalStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            verticalStack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            verticalStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+        ])
+
+        scrollView.addConstraints([
+            verticalStack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            verticalStack.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -20),
+            verticalStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+            verticalStack.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 20),
+            verticalStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
         ])
         
         controller.show(item: item)
@@ -78,5 +80,23 @@ extension DetailViewController: DetailView {
     
     func asUIViewController() -> UIViewController {
         self
+    }
+}
+
+extension DetailViewController {
+    private func createScrollView() -> UIScrollView {
+        let scrollView = UIScrollView(frame: view.frame)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }
+
+    private func createVerticalStack() -> UIStackView {
+        let verticalStack = UIStackView()
+        verticalStack.axis = .vertical
+        verticalStack.distribution = .equalSpacing
+        verticalStack.spacing = 10
+        verticalStack.isLayoutMarginsRelativeArrangement = true
+        verticalStack.translatesAutoresizingMaskIntoConstraints = false
+        return verticalStack
     }
 }
