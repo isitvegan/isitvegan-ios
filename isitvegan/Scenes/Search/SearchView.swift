@@ -96,10 +96,18 @@ class SearchViewController: UISplitViewController {
     @objc private func handleRefreshControl() {
         self.controller.refreshItems { result in
             self.refreshControl?.endRefreshing()
-            if case let .failure(error) = result {
-                fatalError("Unable to refresh items \(error)")
+            if case .failure(_) = result {
+               self.showUpdateError()
             }
         }
+    }
+
+    private func showUpdateError() {
+        let alert = UIAlertController(title: "Updating items failed",
+                                      message: "Could not update items, because the network is currently not available.",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in }))
+        present(alert, animated: true, completion: nil)
     }
 }
 
