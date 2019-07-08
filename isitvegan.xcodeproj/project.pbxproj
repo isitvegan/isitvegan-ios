@@ -46,6 +46,8 @@
 		450F202C22BA665B00E1708D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		450F203022BB836A00E1708D /* NetworkItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkItemsLoader.swift; sourceTree = "<group>"; };
 		45122A8A22D33FE3006457A3 /* StateViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewModelMapper.swift; sourceTree = "<group>"; };
+		45122A8C22D34711006457A3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		45122A8D22D34725006457A3 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		454BB37122B77E380069A012 /* StorageWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageWriter.swift; sourceTree = "<group>"; };
 		454BB37C22B7C12C0069A012 /* ItemsStorageUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsStorageUpdater.swift; sourceTree = "<group>"; };
 		454BB37E22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsStorageUpdaterImpl.swift; sourceTree = "<group>"; };
@@ -142,6 +144,8 @@
 		455346A822A2ACD6005127C9 = {
 			isa = PBXGroup;
 			children = (
+				45122A8D22D34725006457A3 /* readme.md */,
+				45122A8C22D34711006457A3 /* .gitignore */,
 				455346B322A2ACD6005127C9 /* isitvegan */,
 				455346B222A2ACD6005127C9 /* Products */,
 			);
