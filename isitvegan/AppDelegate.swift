@@ -5,7 +5,7 @@ import Foundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    lazy var storage: SqliteStorage = createSqliteStorage()
+    lazy var compositionRoot: CompositionRoot = CompositionRoot()
 
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession,
@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ application: UIApplication) {
-        try! storage.setupSchema()
         // TODO: only do this on the first launch
         // populateDatabase()
+        try! compositionRoot.sqliteStorage.setupSchema()
     }
 
     private func populateDatabase() {
@@ -26,10 +26,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // itemsStorageUpdater.updateItems(completion: {})
     }
 
-    private func createSqliteStorage() -> SqliteStorage {
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let connection = try! Connection("\(path)/database.sqlite3")
-        return SqliteStorage(connection: connection)
-    }
 }
 
