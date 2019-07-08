@@ -31,7 +31,7 @@ extension DefaultSceneDelegate {
     }
     
     private func createDetailView(_ item: Item) -> DetailView {
-        let presenter = DetailPresenterImpl()
+        let presenter = DetailPresenterImpl(stateViewModelMapper: createStateViewModelMapper())
         let controller = DetailControllerImpl(presenter: presenter)
         let view = DetailViewController(controller: controller, item: item)
         presenter.view = view

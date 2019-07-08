@@ -3,6 +3,7 @@ import UIKit
 struct DetailViewItem {
     let name: String
     let description: String
+    let state: StateViewModel
 }
 
 protocol DetailView {
@@ -17,6 +18,7 @@ class DetailViewController: UIViewController {
     
     private var titleLabel: UILabel!
     private var descriptionLabel: UILabel!
+    private var stateIndicatorView: StateIndicatorView!
 
     init(controller: DetailController, item: Item) {
         self.controller = controller
@@ -47,7 +49,10 @@ class DetailViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = .preferredFont(forTextStyle: .body)
 
+        stateIndicatorView = StateIndicatorView()
+
         verticalStack.addArrangedSubview(titleLabel)
+        verticalStack.addArrangedSubview(stateIndicatorView)
         verticalStack.addArrangedSubview(descriptionLabel)
 
         view.addConstraints([
@@ -76,6 +81,10 @@ extension DetailViewController: DetailView {
         
         descriptionLabel.text = item.description
         descriptionLabel.sizeToFit()
+
+        stateIndicatorView.image = UIImage(systemName: item.state.imageName)!
+        stateIndicatorView.color = item.state.color
+        stateIndicatorView.text = item.state.title
     }
     
     func asUIViewController() -> UIViewController {
@@ -93,7 +102,7 @@ extension DetailViewController {
     private func createVerticalStack() -> UIStackView {
         let verticalStack = UIStackView()
         verticalStack.axis = .vertical
-        verticalStack.distribution = .equalSpacing
+        verticalStack.alignment = .leading
         verticalStack.spacing = 10
         verticalStack.isLayoutMarginsRelativeArrangement = true
         verticalStack.translatesAutoresizingMaskIntoConstraints = false
