@@ -11,8 +11,7 @@ protocol ItemTableViewCell {
 
 class TableViewCell: UITableViewCell {
     private let nameLabel: UILabel = UILabel()
-    private let stateLabel: UILabel = UILabel()
-    private let stateImage: UIImageView = UIImageView()
+    private let stateIndicator: StateIndicatorView = StateIndicatorView()
     private let eNumberLabel: UILabel = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -21,24 +20,17 @@ class TableViewCell: UITableViewCell {
         accessoryType = .disclosureIndicator
 
         nameLabel.font = .preferredFont(forTextStyle: .body)
-        stateLabel.font = .preferredFont(forTextStyle: .footnote)
+        nameLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         eNumberLabel.textColor = .secondaryLabel
         eNumberLabel.font = .preferredFont(forTextStyle: .footnote)
-        stateImage.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        stateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         let horizontalStack = UIStackView()
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         horizontalStack.spacing = 10
         horizontalStack.alignment = .center
 
-        let stateStack = UIStackView()
-        stateStack.spacing = 2
-        stateStack.alignment = .center
-        stateStack.addArrangedSubview(stateLabel)
-        stateStack.addArrangedSubview(stateImage)
-        stateStack.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        stateStack.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        stateIndicator.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        stateIndicator.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         let verticalStack = UIStackView()
         verticalStack.axis = .vertical
@@ -48,7 +40,7 @@ class TableViewCell: UITableViewCell {
         verticalStack.addArrangedSubview(eNumberLabel)
 
         horizontalStack.addArrangedSubview(verticalStack)
-        horizontalStack.addArrangedSubview(stateStack)
+        horizontalStack.addArrangedSubview(stateIndicator)
 
         contentView.addSubview(horizontalStack)
 
@@ -68,16 +60,15 @@ class TableViewCell: UITableViewCell {
 
 extension TableViewCell: ItemTableViewCell {
     func setStateImageName(_ name: String) {
-        stateImage.image = UIImage(systemName: name)
+        stateIndicator.image = UIImage(systemName: name)
     }
 
     func setStateDescription(_ description: String) {
-        stateLabel.text = description
+        stateIndicator.text = description
     }
 
     func setStateColor(_ color: UIColor) {
-        stateImage.tintColor = color
-        stateLabel.textColor = color
+        stateIndicator.color = color
     }
 
     func setName(_ name: String) {
