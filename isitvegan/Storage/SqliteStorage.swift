@@ -1,5 +1,6 @@
 import Foundation
 import SQLite
+import enum Swift.Result
 
 class SqliteStorage {
     let connection: Connection
@@ -47,23 +48,27 @@ extension SqliteStorage: StorageReader {
 }
 
 extension SqliteStorage: StorageWriter {
-    func writeItems(_ items: [Item]) {
-        try! connection.transaction {
-            for item in items {
-                let query = self.items.insert(
-                    self.id <- item.id,
-                    self.name <- item.name,
-                    self.itemDescription <- item.description,
-                    self.eNumber <- item.eNumber,
-                    self.state <- item.state.rawValue
-                )
-                try! self.connection.run(query)
+    func writeItems(_ items: [Item]) -> Result<Void, Error> {
+        return Result {
+            try connection.transaction {
+                for item in items {
+                    let query = self.items.insert(
+                        self.id <- item.id,
+                        self.name <- item.name,
+                        self.itemDescription <- item.description,
+                        self.eNumber <- item.eNumber,
+                        self.state <- item.state.rawValue
+                    )
+                    try self.connection.run(query)
+                }
             }
         }
     }
 
-    func deleteAllItems() {
-        try! connection.run(items.delete())
+    func deleteAllItems() -> Result<Void, Error> {
+        return Result {
+            try connection.run(items.delete())
+        }
     }
 }
 

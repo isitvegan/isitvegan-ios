@@ -7,7 +7,7 @@ protocol SearchController {
 
     func search(eNumber: String)
 
-    func refreshItems(completion: @escaping () -> Void)
+    func refreshItems(_ completion: @escaping (_ result: Result<Void, Error>) -> Void)
 
     func showDetail(itemIndex: Int)
 }
@@ -51,10 +51,9 @@ extension SearchControllerImpl: SearchController {
         updateFilter(newFilter: normalizedENumber.isEmpty ? .none : .eNumber(normalizedENumber))
     }
 
-    func refreshItems(completion: @escaping () -> Void) {
-        itemsStorageUpdater.updateItems(completion: {
-            self.presentItems()
-            completion()
+    func refreshItems(_ completion: @escaping (_ result: Result<Void, Error>) -> Void) {
+        itemsStorageUpdater.updateItems(completion: { result in
+            completion(result.map { _ in self.presentItems() })
         })
     }
 }

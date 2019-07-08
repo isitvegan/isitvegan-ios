@@ -11,15 +11,19 @@ class ItemsStorageUpdaterImpl {
 }
 
 extension ItemsStorageUpdaterImpl: ItemsStorageUpdater {
-    func updateItems(completion: @escaping () -> Void) {
+    func updateItems(completion: @escaping (_ result: Result<Void, Error>) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             self.itemsLoader.loadItems(completion: { items in
-                self.storageWriter.deleteAllItems()
-                self.storageWriter.writeItems(items)
+                let result = items.flatMap(self.writeItems)
                 DispatchQueue.main.async {
-                    completion()
+                    completion(result)
                 }
             })
         }
+    }
+
+    private func writeItems(_ items: [Item]) -> Result<Void, Error> {
+        return storageWriter.deleteAllItems()
+            .flatMap { _ in storageWriter.writeItems(items) }
     }
 }

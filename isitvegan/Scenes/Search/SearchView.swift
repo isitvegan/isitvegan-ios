@@ -94,9 +94,12 @@ class SearchViewController: UISplitViewController {
     }
 
     @objc private func handleRefreshControl() {
-        self.controller.refreshItems(completion: {
+        self.controller.refreshItems { result in
             self.refreshControl?.endRefreshing()
-        })
+            if case let .failure(error) = result {
+                fatalError("Unable to refresh items \(error)")
+            }
+        }
     }
 }
 

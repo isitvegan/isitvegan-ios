@@ -9,10 +9,11 @@ class NetworkItemsLoader {
 }
 
 extension NetworkItemsLoader: ItemsLoader {
-    func loadItems(completion: @escaping ([Item]) -> Void) {
+    func loadItems(completion: @escaping (Result<[Item], Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: itemsUrl, completionHandler: { (data, response, error) in
-            let items = try! self.itemsDeserializer.deserializeItems(from: data!)
-            completion(items)
+            let result = Result(result: data, error: error)
+                .flatMap { items in self.itemsDeserializer.deserializeItems(from: items) }
+            completion(result)
         })
         task.resume()
     }
