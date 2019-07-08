@@ -14,9 +14,12 @@ class SearchPresenterImpl {
     var itemByIndex: ((_ index: Int) -> Item)!
 
     private let createDetailView: (_ item: Item) -> DetailView
+    private let stateViewModelMapper: StateViewModelMapper
 
-    init(createDetailView: @escaping (_ item: Item) -> DetailView) {
+    init(createDetailView: @escaping (_ item: Item) -> DetailView,
+         stateViewModelMapper: StateViewModelMapper) {
         self.createDetailView = createDetailView
+        self.stateViewModelMapper = stateViewModelMapper
     }
 }
 
@@ -37,48 +40,12 @@ extension SearchPresenterImpl: SearchPresenter {
 
 extension SearchPresenterImpl {
     private func createSearchViewItem(item: Item) -> SearchViewItem {
-        let stateTitle = titleFor(state: item.state)
         return SearchViewItem(name: item.name,
                               eNumber: item.eNumber ?? "",
-                              stateDescription: stateTitle,
-                              stateImageName: imageFor(state: item.state),
-                              stateColor: colorFor(state: item.state))
+                              state: stateViewModelMapper.stateToViewModel(item.state))
     }
 
     private func createItemPreviewView(_ itemIndex: Int) -> UIViewController {
         createDetailView(itemByIndex(itemIndex)).asUIViewController()
-    }
-
-    private func titleFor(state: Item.State) -> String {
-        switch (state) {
-        case .vegan:
-            return "Vegan"
-        case .carnist:
-            return "Carnist"
-        case .itDepends:
-            return "It Depends"
-        }
-    }
-
-    private func imageFor(state: Item.State) -> String {
-        switch (state) {
-        case .vegan:
-            return "checkmark.circle.fill"
-        case .carnist:
-            return "xmark.circle.fill"
-        case .itDepends:
-            return "questionmark.circle.fill"
-        }
-    }
-
-    private func colorFor(state: Item.State) -> UIColor {
-        switch (state) {
-        case .vegan:
-            return .veganGreen
-        case .carnist:
-            return .systemRed
-        case .itDepends:
-            return .secondaryLabel
-        }
     }
 }

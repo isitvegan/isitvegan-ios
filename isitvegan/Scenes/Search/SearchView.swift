@@ -3,20 +3,14 @@ import UIKit
 struct SearchViewItem {
     let name: String
     let eNumber: String
-    let stateDescription: String
-    let stateImageName: String
-    let stateColor: UIColor
+    let state: StateViewModel
     
     init(name: String,
          eNumber: String,
-         stateDescription: String,
-         stateImageName: String,
-         stateColor: UIColor) {
+         state: StateViewModel) {
         self.name = name
         self.eNumber = eNumber
-        self.stateDescription = stateDescription
-        self.stateImageName = stateImageName
-        self.stateColor = stateColor
+        self.state = state
     }
 }
 
@@ -131,9 +125,9 @@ extension SearchViewController: UITableViewDataSource {
         let item = items[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ItemTableViewCell
         cell.setName(item.name)
-        cell.setStateImageName(item.stateImageName)
-        cell.setStateDescription(item.stateDescription)
-        cell.setStateColor(item.stateColor)
+        cell.setStateImageName(item.state.imageName)
+        cell.setStateDescription(item.state.title)
+        cell.setStateColor(item.state.color)
         cell.setENumber(item.eNumber)
         return cell.asUITableViewCell()
     }

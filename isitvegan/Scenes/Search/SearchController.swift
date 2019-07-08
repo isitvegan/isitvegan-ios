@@ -2,13 +2,13 @@ import Foundation
 
 protocol SearchController {
     func listItems()
-    
+
     func search(name: String)
-    
+
     func search(eNumber: String)
-    
+
     func refreshItems(completion: @escaping () -> Void)
-    
+
     func showDetail(itemIndex: Int)
 }
 
@@ -37,7 +37,7 @@ extension SearchControllerImpl: SearchController {
         let item = items![itemIndex]
         presenter.presentDetail(item: item)
     }
-    
+
     func listItems() {
         updateFilter(newFilter: .none)
     }
@@ -72,7 +72,7 @@ extension SearchControllerImpl {
         items = result.items
         presenter.present(items: result.items, totalItemsWithoutLimit: result.totalItemsWithoutLimit)
     }
-        
+
     private func fetchItems() -> StorageReaderResult {
         switch (filter) {
         case .none:
@@ -83,7 +83,7 @@ extension SearchControllerImpl {
             return try! storageReader.findItems(eNumber: eNumber, limit: maxItemsToBeShown)
         }
     }
-    
+
     private func normalizeENumber(_ eNumber: String) -> String {
         let trimCharacterSet = CharacterSet(charactersIn: "E").union(.whitespaces)
         return eNumber.trimmingCharacters(in: trimCharacterSet)

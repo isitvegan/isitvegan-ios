@@ -17,7 +17,8 @@ extension DefaultSceneDelegate: UIWindowSceneDelegate {
 
 extension DefaultSceneDelegate {
     private func createSearchView() -> SearchViewController {
-        let searchPresenter = SearchPresenterImpl(createDetailView: createDetailView)
+        let searchPresenter = SearchPresenterImpl(createDetailView: createDetailView,
+                                                  stateViewModelMapper: createStateViewModelMapper())
         let searchController = SearchControllerImpl(
             presenter: searchPresenter,
             itemsStorageUpdater: createItemsStorageUpdater(),
@@ -48,5 +49,9 @@ extension DefaultSceneDelegate {
     private func getSqliteStorage() -> SqliteStorage {
         let delegate = UIApplication.shared.delegate as! AppDelegate
         return delegate.storage
+    }
+
+    private func createStateViewModelMapper() -> StateViewModelMapper {
+        StateViewModelMapperImpl()
     }
 }

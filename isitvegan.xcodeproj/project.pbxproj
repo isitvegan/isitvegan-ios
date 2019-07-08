@@ -15,6 +15,7 @@
 		450F202922B9660200E1708D /* SqliteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F202822B9660200E1708D /* SqliteStorage.swift */; };
 		450F202E22BA665B00E1708D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F202C22BA665B00E1708D /* TableViewCell.swift */; };
 		450F203122BB836A00E1708D /* NetworkItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F203022BB836A00E1708D /* NetworkItemsLoader.swift */; };
+		45122A8B22D33FE3006457A3 /* StateViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45122A8A22D33FE3006457A3 /* StateViewModelMapper.swift */; };
 		454BB37222B77E380069A012 /* StorageWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37122B77E380069A012 /* StorageWriter.swift */; };
 		454BB37D22B7C12C0069A012 /* ItemsStorageUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37C22B7C12C0069A012 /* ItemsStorageUpdater.swift */; };
 		454BB37F22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37E22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift */; };
@@ -44,6 +45,7 @@
 		450F202822B9660200E1708D /* SqliteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteStorage.swift; sourceTree = "<group>"; };
 		450F202C22BA665B00E1708D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		450F203022BB836A00E1708D /* NetworkItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkItemsLoader.swift; sourceTree = "<group>"; };
+		45122A8A22D33FE3006457A3 /* StateViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewModelMapper.swift; sourceTree = "<group>"; };
 		454BB37122B77E380069A012 /* StorageWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageWriter.swift; sourceTree = "<group>"; };
 		454BB37C22B7C12C0069A012 /* ItemsStorageUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsStorageUpdater.swift; sourceTree = "<group>"; };
 		454BB37E22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsStorageUpdaterImpl.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		450F1FC722B7CF4F00E1708D /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				45122A8922D33FB7006457A3 /* State */,
 				45F8560E22BD1DB500E06C19 /* Detail */,
 				450F1FC822B7D04900E1708D /* Search */,
 				45F0E16322D219770039F135 /* StateIndicatorView.swift */,
@@ -107,6 +110,14 @@
 				450F202C22BA665B00E1708D /* TableViewCell.swift */,
 			);
 			path = TableCell;
+			sourceTree = "<group>";
+		};
+		45122A8922D33FB7006457A3 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				45122A8A22D33FE3006457A3 /* StateViewModelMapper.swift */,
+			);
+			path = State;
 			sourceTree = "<group>";
 		};
 		454BB37B22B7C0E00069A012 /* ItemsStorageUpdater */ = {
@@ -303,6 +314,7 @@
 				454BB38222B7C27D0069A012 /* StorageReader.swift in Sources */,
 				450F1FD022B8141000E1708D /* Color.swift in Sources */,
 				459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */,
+				45122A8B22D33FE3006457A3 /* StateViewModelMapper.swift in Sources */,
 				45F8561422BD1E1C00E06C19 /* DetailController.swift in Sources */,
 				45F8561222BD1E0300E06C19 /* DetailPresenter.swift in Sources */,
 				459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */,
