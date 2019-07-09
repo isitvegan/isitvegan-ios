@@ -18,6 +18,10 @@ class SqliteStorage {
     }
     
     func setupSchema() throws {
+        try createItemsTable()
+    }
+
+    private func createItemsTable() throws {
         let config = FTS5Config()
             .column(id, [.unindexed])
             .column(name)
@@ -85,7 +89,8 @@ extension SqliteStorage {
              name: row[name],
              state: Item.State(rawValue: row[state])!,
              eNumber: row[eNumber],
-             description: row[itemDescription])
+             description: row[itemDescription],
+             sources: [])
     }
 
     private func escapeLikeWildcard(_ wildcard: String, escape: Character) -> String {
