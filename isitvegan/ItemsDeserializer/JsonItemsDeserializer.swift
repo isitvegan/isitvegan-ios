@@ -1,6 +1,6 @@
 import Foundation
 
-class JsonItemDeserializer {
+class JsonItemsDeserializer {
     private var decoder: JSONDecoder
     
     init(decoder: JSONDecoder) {
@@ -8,7 +8,7 @@ class JsonItemDeserializer {
     }
 }
 
-extension JsonItemDeserializer: ItemsDeserializer {
+extension JsonItemsDeserializer: ItemsDeserializer {
     func deserializeItems(from data: Data) -> Result<[Item], Error> {
         return Result {
             try decoder.decode([JsonItem].self, from: data).map { $0.item }

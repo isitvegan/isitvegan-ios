@@ -30,7 +30,7 @@
 		459EE89C22A2B97100F976FA /* SpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */; };
 		459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */; };
 		459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */; };
-		459EE8A322A2E7F000F976FA /* JsonItemDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A222A2E7F000F976FA /* JsonItemDeserializer.swift */; };
+		459EE8A322A2E7F000F976FA /* JsonItemsDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A222A2E7F000F976FA /* JsonItemsDeserializer.swift */; };
 		459EE8A622A2E8E800F976FA /* ItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A522A2E8E800F976FA /* ItemsLoader.swift */; };
 		45F0E16422D219770039F135 /* StateIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0E16322D219770039F135 /* StateIndicatorView.swift */; };
 		45F8561022BD1DF700E06C19 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8560F22BD1DF700E06C19 /* DetailView.swift */; };
@@ -66,7 +66,7 @@
 		459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexer.swift; sourceTree = "<group>"; };
 		459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexerImpl.swift; sourceTree = "<group>"; };
 		459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsDeserializer.swift; sourceTree = "<group>"; };
-		459EE8A222A2E7F000F976FA /* JsonItemDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonItemDeserializer.swift; sourceTree = "<group>"; };
+		459EE8A222A2E7F000F976FA /* JsonItemsDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonItemsDeserializer.swift; sourceTree = "<group>"; };
 		459EE8A522A2E8E800F976FA /* ItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLoader.swift; sourceTree = "<group>"; };
 		45F0E16322D219770039F135 /* StateIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateIndicatorView.swift; sourceTree = "<group>"; };
 		45F8560F22BD1DF700E06C19 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */,
-				459EE8A222A2E7F000F976FA /* JsonItemDeserializer.swift */,
+				459EE8A222A2E7F000F976FA /* JsonItemsDeserializer.swift */,
 			);
 			path = ItemsDeserializer;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 				459EE89C22A2B97100F976FA /* SpotlightIndexer.swift in Sources */,
 				45F8561022BD1DF700E06C19 /* DetailView.swift in Sources */,
 				45F0E16422D219770039F135 /* StateIndicatorView.swift in Sources */,
-				459EE8A322A2E7F000F976FA /* JsonItemDeserializer.swift in Sources */,
+				459EE8A322A2E7F000F976FA /* JsonItemsDeserializer.swift in Sources */,
 				459EE8A622A2E8E800F976FA /* ItemsLoader.swift in Sources */,
 				459EE89922A2B10800F976FA /* Item.swift in Sources */,
 				455346B522A2ACD6005127C9 /* AppDelegate.swift in Sources */,

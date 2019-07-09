@@ -36,7 +36,7 @@ class CompositionRoot {
     }
 
     private func createItemsLoader() -> ItemsLoader {
-        NetworkItemsLoader(itemsDeserializer: JsonItemDeserializer(decoder: JSONDecoder()))
+        NetworkItemsLoader(itemsDeserializer: JsonItemsDeserializer(decoder: JSONDecoder()))
     }
 
     private func createStateViewModelMapper() -> StateViewModelMapper {
