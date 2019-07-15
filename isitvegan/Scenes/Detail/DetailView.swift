@@ -31,11 +31,7 @@ class DetailViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemBackground
-        } else {
-            view.backgroundColor = .white
-        }
+        view.backgroundColor = Color.systemBackground
         navigationItem.largeTitleDisplayMode = .never
         
         let scrollView = createScrollView()

@@ -9,11 +9,19 @@ class CompositionRoot {
         return SqliteStorage(connection: connection)
     }()
 
-    func createItemsStorageUpdater() -> ItemsStorageUpdater {
-        return ItemsStorageUpdaterImpl(source: createItemsLoader(), target: sqliteStorage)
+    func createRootView() -> RootViewController {
+        let presenter = RootPresenterImpl()
+        let controller = RootControllerImpl(presenter: presenter,
+                                            databaseInitializationStateRepository: createDatabaseInitializationStateRepository(),
+                                            itemsStorageUpdater: createItemsStorageUpdater())
+        let view = RootViewController(controller: controller, createSearchView: createSearchView, createLoadingView: createLoadingView)
+
+        presenter.view = view
+
+        return view
     }
 
-    func createSearchView() -> SearchViewController {
+    private func createSearchView() -> SearchViewController {
         let searchPresenter = SearchPresenterImpl(createDetailView: createDetailView,
                                                   stateViewModelMapper: createStateViewModelMapper())
         let searchController = SearchControllerImpl(
@@ -25,6 +33,18 @@ class CompositionRoot {
                                               cellClass: TableViewCell.self)
         searchPresenter.view = searchView
         return searchView
+    }
+
+    private func createLoadingView() -> LoadingViewController {
+        return LoadingViewController()
+    }
+
+    private func createItemsStorageUpdater() -> ItemsStorageUpdater {
+        return ItemsStorageUpdaterImpl(source: createItemsLoader(), target: sqliteStorage)
+    }
+
+    private func createDatabaseInitializationStateRepository() -> DatabaseInitializationStateRepository {
+        DatabaseInitializationStateRepositoryImpl(userDefaults: UserDefaults.standard)
     }
 
     private func createDetailView(_ item: Item) -> DetailView {

@@ -11,7 +11,7 @@ extension DefaultSceneDelegate: UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         window = UIWindow(windowScene: scene as! UIWindowScene)
-        window?.rootViewController = appDelegate.compositionRoot.createSearchView()
+        window?.rootViewController = appDelegate.compositionRoot.createRootView()
         window?.tintColor = .veganGreen
         window?.makeKeyAndVisible()
     }
