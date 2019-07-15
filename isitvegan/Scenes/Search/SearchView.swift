@@ -60,6 +60,7 @@ class SearchViewController: UISplitViewController {
         preferredDisplayMode = .allVisible
         
         let tableViewController = UITableViewController(style: .grouped)
+        tableViewController.definesPresentationContext = true
 
         tableView = tableViewController.view as? UITableView
         tableView?.dataSource = self
@@ -83,8 +84,7 @@ class SearchViewController: UISplitViewController {
     }
 
     private func createSearchController() -> UISearchController {
-        let searchController = UISearchController()
-        searchController.automaticallyShowsScopeBar = true
+        let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.definesPresentationContext = false
@@ -159,6 +159,7 @@ extension SearchViewController: UITableViewDataSource {
         return UITableView.automaticDimension
     }
 
+    @available(iOS 13.0, *)
     func tableView(_ tableView: UITableView,
                    contextMenuConfigurationForRowAt indexPath: IndexPath,
                    point: CGPoint) -> UIContextMenuConfiguration? {
@@ -175,6 +176,7 @@ extension SearchViewController: UITableViewDataSource {
 }
 
 extension SearchViewController {
+    @available(iOS 13.0, *)
     private func createContextMenu(itemIndex: Int) -> UIMenu {
         let show = UIAction(__title: "Show", image: UIImage(systemName: "eye"), identifier: nil,  handler: {_ in
             self.controller.showDetail(itemIndex: itemIndex)
@@ -218,8 +220,8 @@ extension SearchViewController: UISearchResultsUpdating {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         let scope = searchScopes[selectedScope]
-        searchBar.searchTextField.keyboardType = scope.keyboardType
-        searchBar.searchTextField.reloadInputViews()
+        searchBar.keyboardType = scope.keyboardType
+        searchBar.reloadInputViews()
     }
 }
 

@@ -49,7 +49,11 @@ extension StateViewModelMapperImpl: StateViewModelMapper {
         case .carnist:
             return .systemRed
         case .itDepends:
-            return .secondaryLabel
+            if #available(iOS 13.0, *) {
+                return .secondaryLabel
+            } else {
+                return .lightGray
+            }
         }
     }
 }

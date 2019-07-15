@@ -21,13 +21,18 @@ class TableViewCell: UITableViewCell {
 
         nameLabel.font = .preferredFont(forTextStyle: .body)
         nameLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        eNumberLabel.textColor = .secondaryLabel
+        if #available(iOS 13.0, *) {
+            eNumberLabel.textColor = .secondaryLabel
+        } else {
+            eNumberLabel.textColor = .lightGray
+        }
         eNumberLabel.font = .preferredFont(forTextStyle: .footnote)
 
         let horizontalStack = UIStackView()
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
         horizontalStack.spacing = 10
         horizontalStack.alignment = .center
+        horizontalStack.distribution = .equalSpacing
 
         stateIndicator.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         stateIndicator.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -60,7 +65,11 @@ class TableViewCell: UITableViewCell {
 
 extension TableViewCell: ItemTableViewCell {
     func setStateImageName(_ name: String) {
-        stateIndicator.image = UIImage(systemName: name)
+        if #available(iOS 13.0, *) {
+            stateIndicator.image = UIImage(systemName: name)
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     func setStateDescription(_ description: String) {

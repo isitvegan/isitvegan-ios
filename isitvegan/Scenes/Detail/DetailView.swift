@@ -31,7 +31,11 @@ class DetailViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .systemBackground
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
         navigationItem.largeTitleDisplayMode = .never
         
         let scrollView = createScrollView()
@@ -42,7 +46,11 @@ class DetailViewController: UIViewController {
 
         titleLabel = UILabel()
         titleLabel.font = .preferredFont(forTextStyle: .title1)
-        titleLabel.textColor = .label
+        if #available(iOS 13.0, *) {
+            titleLabel.textColor = .label
+        } else {
+            titleLabel.textColor = .black
+        }
         titleLabel.numberOfLines = 0
         
         descriptionLabel = UILabel()
@@ -82,7 +90,11 @@ extension DetailViewController: DetailView {
         descriptionLabel.text = item.description
         descriptionLabel.sizeToFit()
 
-        stateIndicatorView.image = UIImage(systemName: item.state.imageName)!
+        if #available(iOS 13.0, *) {
+            stateIndicatorView.image = UIImage(systemName: item.state.imageName)!
+        } else {
+            // Fallback on earlier versions
+        }
         stateIndicatorView.color = item.state.color
         stateIndicatorView.text = item.state.title
     }
