@@ -27,8 +27,6 @@
 		455346C222A2ACD7005127C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455346C022A2ACD7005127C9 /* LaunchScreen.storyboard */; };
 		458DB17022B2C7CB00DB43F8 /* DefaultSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */; };
 		459EE89922A2B10800F976FA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89822A2B10800F976FA /* Item.swift */; };
-		459EE89C22A2B97100F976FA /* SpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */; };
-		459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */; };
 		459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */; };
 		459EE8A322A2E7F000F976FA /* JsonItemsDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A222A2E7F000F976FA /* JsonItemsDeserializer.swift */; };
 		459EE8A622A2E8E800F976FA /* ItemsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A522A2E8E800F976FA /* ItemsLoader.swift */; };
@@ -63,8 +61,6 @@
 		458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSceneDelegate.swift; sourceTree = "<group>"; };
 		458DB17122B2C86A00DB43F8 /* isitvegan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = isitvegan.entitlements; sourceTree = "<group>"; };
 		459EE89822A2B10800F976FA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexer.swift; sourceTree = "<group>"; };
-		459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexerImpl.swift; sourceTree = "<group>"; };
 		459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsDeserializer.swift; sourceTree = "<group>"; };
 		459EE8A222A2E7F000F976FA /* JsonItemsDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonItemsDeserializer.swift; sourceTree = "<group>"; };
 		459EE8A522A2E8E800F976FA /* ItemsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsLoader.swift; sourceTree = "<group>"; };
@@ -170,7 +166,6 @@
 				458DB17122B2C86A00DB43F8 /* isitvegan.entitlements */,
 				459EE8A422A2E8C200F976FA /* ItemsLoader */,
 				459EE89F22A2E79A00F976FA /* ItemsDeserializer */,
-				459EE89A22A2B96500F976FA /* Spotlight */,
 				459EE89722A2B0FB00F976FA /* Model */,
 				455346B422A2ACD6005127C9 /* AppDelegate.swift */,
 				455346BE22A2ACD7005127C9 /* Assets.xcassets */,
@@ -190,15 +185,6 @@
 				459EE89822A2B10800F976FA /* Item.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		459EE89A22A2B96500F976FA /* Spotlight */ = {
-			isa = PBXGroup;
-			children = (
-				459EE89B22A2B97100F976FA /* SpotlightIndexer.swift */,
-				459EE89D22A2B9E000F976FA /* SpotlightIndexerImpl.swift */,
-			);
-			path = Spotlight;
 			sourceTree = "<group>";
 		};
 		459EE89F22A2E79A00F976FA /* ItemsDeserializer */ = {
@@ -308,7 +294,6 @@
 				45122A9122D37B7B006457A3 /* Result.swift in Sources */,
 				454BB37D22B7C12C0069A012 /* ItemsStorageUpdater.swift in Sources */,
 				450F1FCA22B7D05E00E1708D /* SearchView.swift in Sources */,
-				459EE89C22A2B97100F976FA /* SpotlightIndexer.swift in Sources */,
 				45F8561022BD1DF700E06C19 /* DetailView.swift in Sources */,
 				45F0E16422D219770039F135 /* StateIndicatorView.swift in Sources */,
 				459EE8A322A2E7F000F976FA /* JsonItemsDeserializer.swift in Sources */,
@@ -324,7 +309,6 @@
 				45122A8B22D33FE3006457A3 /* StateViewModelMapper.swift in Sources */,
 				45F8561422BD1E1C00E06C19 /* DetailController.swift in Sources */,
 				45F8561222BD1E0300E06C19 /* DetailPresenter.swift in Sources */,
-				459EE89E22A2B9E000F976FA /* SpotlightIndexerImpl.swift in Sources */,
 				450F202E22BA665B00E1708D /* TableViewCell.swift in Sources */,
 				454BB37222B77E380069A012 /* StorageWriter.swift in Sources */,
 				450F202922B9660200E1708D /* SqliteStorage.swift in Sources */,
