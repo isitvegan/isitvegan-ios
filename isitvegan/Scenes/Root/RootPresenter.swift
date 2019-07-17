@@ -5,7 +5,7 @@ protocol RootPresenter {
 
     func presentLoadingView()
 
-    func presentLoadingErrorView()
+    func presentLoadingErrorView(retry: @escaping () -> Void)
 }
 
 class RootPresenterImpl {
@@ -21,7 +21,7 @@ extension RootPresenterImpl: RootPresenter {
         view.showLoadingView()
     }
 
-    func presentLoadingErrorView() {
-        view.showLoadingErrorView()
+    func presentLoadingErrorView(retry: @escaping () -> Void) {
+        view.showLoadingErrorView(retry: retry)
     }
 }

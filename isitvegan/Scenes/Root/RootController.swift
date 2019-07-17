@@ -38,7 +38,7 @@ extension RootControllerImpl {
                 self.databaseInitializationStateRepository.write(value: .initialized)
                 self.presenter.presentSearchView()
             case .failure(_):
-                self.presenter.presentLoadingView()
+                self.presenter.presentLoadingErrorView(retry: { self.run() })
             }
         }
     }

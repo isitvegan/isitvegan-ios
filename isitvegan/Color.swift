@@ -14,4 +14,12 @@ class Color {
             return .white
         }
     }
+
+    class var secondaryLabel: UIColor {
+        if #available(iOS 13.0, *) {
+            return .secondaryLabel
+        } else {
+            return .lightGray
+        }
+    }
 }

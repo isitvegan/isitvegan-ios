@@ -14,7 +14,10 @@ class CompositionRoot {
         let controller = RootControllerImpl(presenter: presenter,
                                             databaseInitializationStateRepository: createDatabaseInitializationStateRepository(),
                                             itemsStorageUpdater: createItemsStorageUpdater())
-        let view = RootViewController(controller: controller, createSearchView: createSearchView, createLoadingView: createLoadingView)
+        let view = RootViewController(controller: controller,
+                                      createSearchView: createSearchView,
+                                      createLoadingView: createLoadingView,
+                                      createLoadingErrorView: createLoadingErrorView)
 
         presenter.view = view
 
@@ -37,6 +40,10 @@ class CompositionRoot {
 
     private func createLoadingView() -> LoadingViewController {
         return LoadingViewController()
+    }
+
+    private func createLoadingErrorView(_ retry: @escaping () -> Void) -> LoadingErrorViewController {
+        return LoadingErrorViewController(retryLoading: retry)
     }
 
     private func createItemsStorageUpdater() -> ItemsStorageUpdater {

@@ -21,11 +21,7 @@ class TableViewCell: UITableViewCell {
 
         nameLabel.font = .preferredFont(forTextStyle: .body)
         nameLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        if #available(iOS 13.0, *) {
-            eNumberLabel.textColor = .secondaryLabel
-        } else {
-            eNumberLabel.textColor = .lightGray
-        }
+        eNumberLabel.textColor = Color.secondaryLabel
         eNumberLabel.font = .preferredFont(forTextStyle: .footnote)
 
         let horizontalStack = UIStackView()
