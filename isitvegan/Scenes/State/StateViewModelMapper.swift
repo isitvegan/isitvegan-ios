@@ -2,7 +2,7 @@ import UIKit
 
 struct StateViewModel {
     let title: String
-    let imageName: String
+    let imageName: ImageName
     let color: UIColor
 }
 
@@ -31,14 +31,14 @@ extension StateViewModelMapperImpl: StateViewModelMapper {
         }
     }
 
-    private func imageNameFor(state: Item.State) -> String {
+    private func imageNameFor(state: Item.State) -> ImageName {
         switch (state) {
         case .vegan:
-            return "checkmark.circle.fill"
+            return .checkmarkCircleFill
         case .carnist:
-            return "xmark.circle.fill"
+            return .xmarkCircleFill
         case .itDepends:
-            return "questionmark.circle.fill"
+            return .questionmarkCircleFill
         }
     }
 

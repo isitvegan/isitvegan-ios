@@ -91,11 +91,7 @@ extension DetailViewController: DetailView {
         descriptionLabel.text = item.description
         descriptionLabel.sizeToFit()
 
-        if #available(iOS 13.0, *) {
-            stateIndicatorView.image = UIImage(systemName: item.state.imageName)!
-        } else {
-            // Fallback on earlier versions
-        }
+        stateIndicatorView.imageName = item.state.imageName
         stateIndicatorView.color = item.state.color
         stateIndicatorView.text = item.state.title
     }

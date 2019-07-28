@@ -2,10 +2,16 @@ import Foundation
 import UIKit
 
 class StateIndicatorView: UIView {
-    var image: UIImage? {
+    var imageName: ImageName? {
         didSet {
-            imageView.image = image
-            imageView.sizeToFit()
+            if let imageName = imageName {
+                if #available(iOS 13.0, *) {
+                    imageView.image = UIImage(systemName: imageName.rawValue)
+                } else {
+                    imageView.image = UIImage(named: imageName.rawValue)?.withRenderingMode(.alwaysTemplate)
+                }
+                imageView.sizeToFit()
+            }
         }
     }
 

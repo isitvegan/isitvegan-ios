@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ItemTableViewCell {
-    func setStateImageName(_ name: String)
+    func setStateImageName(_ name: ImageName)
     func setStateDescription(_ description: String)
     func setStateColor(_ color: UIColor)
     func setName(_ name: String)
@@ -60,12 +60,8 @@ class TableViewCell: UITableViewCell {
 }
 
 extension TableViewCell: ItemTableViewCell {
-    func setStateImageName(_ name: String) {
-        if #available(iOS 13.0, *) {
-            stateIndicator.image = UIImage(systemName: name)
-        } else {
-            // Fallback on earlier versions
-        }
+    func setStateImageName(_ name: ImageName) {
+        stateIndicator.imageName = name
     }
 
     func setStateDescription(_ description: String) {
