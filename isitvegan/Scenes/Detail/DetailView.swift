@@ -38,26 +38,33 @@ class DetailViewController: UIViewController {
         view.addSubview(scrollView)
         
         let verticalStack = createVerticalStack()
+        verticalStack.layoutMargins = .init(top: 20, left: 0, bottom: 20, right: 0)
         scrollView.addSubview(verticalStack)
+
+        let headerStack = createHeaderStack()
+        headerStack.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
+        verticalStack.addArrangedSubview(headerStack)
 
         titleLabel = UILabel()
         titleLabel.font = .preferredFont(forTextStyle: .title1)
-        if #available(iOS 13.0, *) {
-            titleLabel.textColor = .label
-        } else {
-            titleLabel.textColor = .black
-        }
+        titleLabel.textColor = Color.label
         titleLabel.numberOfLines = 0
-        
+        titleLabel.textAlignment = .center
+        headerStack.addArrangedSubview(titleLabel)
+
+        stateIndicatorView = StateIndicatorView()
+        headerStack.addArrangedSubview(stateIndicatorView)
+
+        insertSeparator(verticalStack)
+
+        let contentStack = createVerticalStack()
+        verticalStack.addArrangedSubview(contentStack)
+
         descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = .preferredFont(forTextStyle: .body)
-
-        stateIndicatorView = StateIndicatorView()
-
-        verticalStack.addArrangedSubview(titleLabel)
-        verticalStack.addArrangedSubview(stateIndicatorView)
-        verticalStack.addArrangedSubview(descriptionLabel)
+        contentStack.addArrangedSubview(descriptionLabel)
+        contentStack.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
 
         view.addConstraints([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -67,11 +74,9 @@ class DetailViewController: UIViewController {
         ])
 
         scrollView.addConstraints([
-            verticalStack.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-            verticalStack.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -20),
-            verticalStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
-            verticalStack.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 20),
-            verticalStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
+            headerStack.widthAnchor.constraint(equalTo: verticalStack.widthAnchor),
+            contentStack.widthAnchor.constraint(equalTo: verticalStack.widthAnchor),
+            verticalStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
         
         controller.show(item: item)
@@ -111,9 +116,29 @@ extension DetailViewController {
         let verticalStack = UIStackView()
         verticalStack.axis = .vertical
         verticalStack.alignment = .leading
-        verticalStack.spacing = 10
+        verticalStack.spacing = 16
         verticalStack.isLayoutMarginsRelativeArrangement = true
         verticalStack.translatesAutoresizingMaskIntoConstraints = false
         return verticalStack
+    }
+
+    private func createHeaderStack() -> UIStackView {
+        let verticalStack = UIStackView()
+        verticalStack.axis = .vertical
+        verticalStack.alignment = .center
+        verticalStack.spacing = 10
+        verticalStack.translatesAutoresizingMaskIntoConstraints = false
+        return verticalStack
+    }
+
+    private func insertSeparator(_ stackView: UIStackView) {
+        let separator = UIView()
+        separator.backgroundColor = Color.separator
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(separator)
+        stackView.addConstraints([
+            separator.heightAnchor.constraint(equalToConstant: 1.0 / UIScreen.main.scale),
+            separator.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+        ])
     }
 }
