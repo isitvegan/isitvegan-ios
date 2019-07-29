@@ -1,6 +1,5 @@
 struct StorageReaderResult {
     let items: [Item]
-    let totalItemsWithoutLimit: Int
 }
 
 protocol StorageReader {

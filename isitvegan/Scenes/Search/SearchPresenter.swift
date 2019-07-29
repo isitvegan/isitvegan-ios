@@ -4,7 +4,7 @@ protocol SearchPresenter {
     var view: SearchView! { get set }
     var itemByIndex: ((_ itemIndex: Int) -> Item)! { get set }
     
-    func present(items: [Item], totalItemsWithoutLimit: Int)
+    func present(items: [Item])
 
     func presentDetail(item: Item)
 }
@@ -24,11 +24,9 @@ class SearchPresenterImpl {
 }
 
 extension SearchPresenterImpl: SearchPresenter {
-    func present(items: [Item], totalItemsWithoutLimit: Int) {
+    func present(items: [Item]) {
         let viewItems = items.map(createSearchViewItem)
-        let itemsNotShownDueToLimit = totalItemsWithoutLimit - items.count
         view?.listItems(items: viewItems,
-                        itemsNotShownDueToLimit: itemsNotShownDueToLimit,
                         createItemPreviewView: createItemPreviewView)
     }
 

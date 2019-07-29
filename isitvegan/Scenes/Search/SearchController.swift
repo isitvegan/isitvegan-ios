@@ -69,7 +69,7 @@ extension SearchControllerImpl {
     private func presentItems() {
         let result = fetchItems()
         items = result.items
-        presenter.present(items: result.items, totalItemsWithoutLimit: result.totalItemsWithoutLimit)
+        presenter.present(items: result.items)
     }
 
     private func fetchItems() -> StorageReaderResult {

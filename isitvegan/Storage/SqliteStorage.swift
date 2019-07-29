@@ -78,10 +78,9 @@ extension SqliteStorage: StorageWriter {
 
 extension SqliteStorage {
     private func findItemsBy(query: VirtualTable, limit: Int) throws -> StorageReaderResult {
-        let itemRows = try connection.prepare(query.limit(limit))
-        let totalItemsWithoutLimit = try connection.scalar(query.select(id.count))
+        let itemRows = try connection.prepare(query.limit(limit)).map { $0 }
         let items = itemRows.map { itemFrom(row: $0) }
-        return StorageReaderResult(items: items, totalItemsWithoutLimit: totalItemsWithoutLimit)
+        return StorageReaderResult(items: items)
     }
 
     private func itemFrom(row: Row) -> Item {

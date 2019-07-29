@@ -16,7 +16,6 @@ struct SearchViewItem {
 
 protocol SearchView {
     func listItems(items: [SearchViewItem],
-                   itemsNotShownDueToLimit: Int,
                    createItemPreviewView: @escaping (_ itemIndex: Int) -> UIViewController)
 
     func showDetailView(_ detailView: UIViewController)
@@ -33,8 +32,7 @@ class SearchViewController: UISplitViewController {
     private var tableFooterView: UILabel?
 
     private var items: [SearchViewItem] = []
-    private var itemsNotShownDueToLimit: Int = 0
-    
+
     private let searchScopes: [SearchScope] = [
         SearchScope(buttonTitle: "Search names", kind: .names, keyboardType: .default),
         SearchScope(buttonTitle: "Search E numbers", kind: .eNumbers, keyboardType: .numberPad),
@@ -113,10 +111,8 @@ class SearchViewController: UISplitViewController {
 
 extension SearchViewController: SearchView {
     func listItems(items: [SearchViewItem],
-                   itemsNotShownDueToLimit: Int,
                    createItemPreviewView: @escaping (_ itemIndex: Int) -> UIViewController) {
         self.items = items
-        self.itemsNotShownDueToLimit = itemsNotShownDueToLimit
         self.createItemPreviewView = createItemPreviewView
         tableView?.reloadData()
     }
@@ -141,17 +137,6 @@ extension SearchViewController: UITableViewDataSource {
         cell.setStateColor(item.state.color)
         cell.setENumber(item.eNumber)
         return cell.asUITableViewCell()
-    }
-
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch itemsNotShownDueToLimit {
-        case 0:
-            return nil
-        case 1:
-            return "1 additional item is not show"
-        default:
-            return "\(itemsNotShownDueToLimit) additional items are not shown"
-        }
     }
 
     func tableView(_ tableView: UITableView,
