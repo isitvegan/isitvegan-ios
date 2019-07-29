@@ -22,8 +22,8 @@ fileprivate struct JsonItem {
 
 extension JsonItem: Decodable {
     private enum CodingKeys: String, CodingKey {
-        case id = "slug"
         case name
+        case alternativeNames = "alternative_names"
         case state
         case eNumber = "e_number"
         case description
@@ -32,13 +32,15 @@ extension JsonItem: Decodable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        let id = try values.decode(String.self, forKey: .id)
         let name = try values.decode(String.self, forKey: .name)
+        let alternativeNames = try values.decode([String].self, forKey: .alternativeNames)
         let state = try values.decode(JsonItemState.self, forKey: .state).state
         let eNumber = try values.decodeIfPresent(String.self, forKey: .eNumber)
         let description = try values.decode(String.self, forKey: .description)
         let sources = try values.decode([JsonItemSource].self, forKey: .sources).map { $0.source }
-        item = Item(id: id, name: name, state: state, eNumber: eNumber, description: description, sources: sources)
+        item = Item(name: name, alternativeNames: alternativeNames,
+                    state: state, eNumber: eNumber,
+                    description: description, sources: sources)
     }
 }
 
@@ -74,17 +76,39 @@ extension JsonItemSource: Decodable {
     private enum CodingKeys: String, CodingKey {
         case type
         case value
+        case lastChecked = "last_checked"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        let type = try values.decode(String.self, forKey: .type)
+        let type = try values.decode(JsonItemSourceType.self, forKey: .type)
         let value = try values.decode(String.self, forKey: .value)
-        switch (type) {
+        let lastCheckedString = try values.decodeIfPresent(String.self, forKey: .lastChecked)
+        let lastChecked = lastCheckedString.flatMap(Self.isoDate)
+        source = Item.Source(type: type.sourceType,
+                             value: value,
+                             lastChecked: lastChecked)
+    }
+
+    private static func isoDate(from: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.date(from: from)
+    }
+}
+
+fileprivate struct JsonItemSourceType {
+    let sourceType: Item.Source.SourceType
+}
+
+extension JsonItemSourceType: Decodable {
+    init(from decoder: Decoder) throws {
+        let value = try decoder.singleValueContainer().decode(String.self)
+        switch value {
         case "url":
-            source = .url(value)
+            sourceType = .url
         default:
-            throw ItemSourceDecodeError.InvalidType(type)
+            throw ItemSourceDecodeError.InvalidType(value)
         }
     }
 }

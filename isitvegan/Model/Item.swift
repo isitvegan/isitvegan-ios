@@ -1,3 +1,5 @@
+import Foundation
+
 struct Item {
     enum State: String {
         case vegan = "vegan"
@@ -5,12 +7,18 @@ struct Item {
         case itDepends = "itDepends"
     }
 
-    enum Source {
-        case url(String)
+    struct Source {
+        enum SourceType: String {
+            case url = "url"
+        }
+
+        let type: SourceType
+        let value: String
+        let lastChecked: Date?
     }
 
-    let id: String
     let name: String
+    let alternativeNames: [String]
     let state: State
     let eNumber: String?
     let description: String
