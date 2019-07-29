@@ -26,6 +26,7 @@
 		455346BF22A2ACD7005127C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 455346BE22A2ACD7005127C9 /* Assets.xcassets */; };
 		455346C222A2ACD7005127C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 455346C022A2ACD7005127C9 /* LaunchScreen.storyboard */; };
 		458DB17022B2C7CB00DB43F8 /* DefaultSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */; };
+		45902EAD22EF021C00F3A968 /* StorageResetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45902EAC22EF021C00F3A968 /* StorageResetter.swift */; };
 		45974C5E22DCD4A000A0A69F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45974C5D22DCD4A000A0A69F /* LoadingView.swift */; };
 		459EE89922A2B10800F976FA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE89822A2B10800F976FA /* Item.swift */; };
 		459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */; };
@@ -69,6 +70,7 @@
 		455346C322A2ACD7005127C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSceneDelegate.swift; sourceTree = "<group>"; };
 		458DB17122B2C86A00DB43F8 /* isitvegan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = isitvegan.entitlements; sourceTree = "<group>"; };
+		45902EAC22EF021C00F3A968 /* StorageResetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StorageResetter.swift; path = "../../../../../../System/Volumes/Data/Users/ruben/Source/isitvegan-ios/isitvegan/Storage/StorageResetter.swift"; sourceTree = "<group>"; };
 		45974C5D22DCD4A000A0A69F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		459EE89822A2B10800F976FA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		459EE8A022A2E7AD00F976FA /* ItemsDeserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsDeserializer.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				454BB38122B7C27D0069A012 /* StorageReader.swift */,
 				454BB37122B77E380069A012 /* StorageWriter.swift */,
 				450F202822B9660200E1708D /* SqliteStorage.swift */,
+				45902EAC22EF021C00F3A968 /* StorageResetter.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				450F1FD022B8141000E1708D /* Color.swift in Sources */,
 				459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */,
 				45122A8B22D33FE3006457A3 /* StateViewModelMapper.swift in Sources */,
+				45902EAD22EF021C00F3A968 /* StorageResetter.swift in Sources */,
 				45A36FE322DCC23E0056AFBA /* RootController.swift in Sources */,
 				45CD2B6722DD8F5600271013 /* LoadingErrorView.swift in Sources */,
 				45F8561422BD1E1C00E06C19 /* DetailController.swift in Sources */,

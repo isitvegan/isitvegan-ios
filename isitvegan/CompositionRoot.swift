@@ -12,8 +12,7 @@ class CompositionRoot {
     func createRootView() -> RootViewController {
         let presenter = RootPresenterImpl()
         let controller = RootControllerImpl(presenter: presenter,
-                                            databaseInitializationStateRepository: createDatabaseInitializationStateRepository(),
-                                            itemsStorageUpdater: createItemsStorageUpdater())
+                                            conditionalStorageResetter: createConditionalStorageResetter())
         let view = RootViewController(controller: controller,
                                       createSearchView: createSearchView,
                                       createLoadingView: createLoadingView,
@@ -68,5 +67,11 @@ class CompositionRoot {
 
     private func createStateViewModelMapper() -> StateViewModelMapper {
         StateViewModelMapperImpl()
+    }
+
+    private func createConditionalStorageResetter() -> ConditionalStorageResetter {
+        return ConditionalStorageResetterImpl(databaseInitializationStateRepository: createDatabaseInitializationStateRepository(),
+                                              storageResetter: sqliteStorage,
+                                              storageUpdater: createItemsStorageUpdater())
     }
 }

@@ -1,8 +1,20 @@
 import UIKit
 
+struct DatabaseVersion: RawRepresentable, Hashable, Equatable {
+    let rawValue: Int
+
+    init(_ rawValue: Int) {
+        self.init(rawValue: rawValue)
+    }
+
+    init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+}
+
 enum DatabaseInitializationState {
     case uninitialized
-    case initialized
+    case initialized(DatabaseVersion)
 }
 
 protocol DatabaseInitializationStateRepository {
@@ -21,24 +33,19 @@ class DatabaseInitializationStateRepositoryImpl {
 
 extension DatabaseInitializationStateRepositoryImpl: DatabaseInitializationStateRepository {
     func read() -> DatabaseInitializationState {
-        let isInitialized = userDefaults.bool(forKey: databaseInitializedKey)
-
-        if isInitialized {
-            return .initialized
-        } else {
-            return .uninitialized
-        }
+        let version = userDefaults.object(forKey: databaseVersion) as? Int
+        return version.map({ .initialized(DatabaseVersion($0)) }) ?? .uninitialized
     }
 
     func write(value: DatabaseInitializationState) {
         switch value {
-        case .initialized:
-            userDefaults.set(true, forKey: databaseInitializedKey)
+        case .initialized(let version):
+            userDefaults.set(version.rawValue, forKey: databaseVersion)
         case .uninitialized:
-            userDefaults.removeObject(forKey: databaseInitializedKey)
+            userDefaults.removeObject(forKey: databaseVersion)
         }
         userDefaults.synchronize()
     }
 }
 
-fileprivate let databaseInitializedKey = "databaseInitialized"
+fileprivate let databaseVersion = "databaseVersion"

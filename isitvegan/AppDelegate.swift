@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        setupDatabase()
-
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = compositionRoot.createRootView()
         window?.tintColor = .veganGreen
@@ -31,10 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = compositionRoot.createRootView()
         window?.tintColor = .veganGreen
         window?.makeKeyAndVisible()
-    }
-
-    private func setupDatabase() {
-        try! compositionRoot.sqliteStorage.setupSchema()
     }
 }
 

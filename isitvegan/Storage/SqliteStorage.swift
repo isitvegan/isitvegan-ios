@@ -3,7 +3,9 @@ import SQLite
 import enum Swift.Result
 
 class SqliteStorage {
-    let connection: Connection
+    let databaseVersion = DatabaseVersion(2)
+
+    private let connection: Connection
 
     private let items = Table("items")
     private let names = VirtualTable("names")
@@ -11,14 +13,6 @@ class SqliteStorage {
 
     init(connection: Connection) {
         self.connection = connection
-    }
-    
-    func setupSchema() throws {
-        try connection.transaction {
-            try createItemsTable()
-            try createNamesTable()
-            try createSourcesTable()
-        }
     }
 
     private func createNamesTable() throws {
@@ -114,6 +108,29 @@ extension SqliteStorage: StorageWriter {
                 try connection.run(items.delete())
                 try connection.run(names.delete())
                 try connection.run(sources.delete())
+            }
+        }
+    }
+}
+
+extension SqliteStorage: StorageResetter {
+    func resetStorage() -> Result<Void, Error> {
+        return Result {
+            try connection.execute("""
+PRAGMA writable_schema = 1;
+DELETE FROM sqlite_master WHERE type = 'table';
+PRAGMA writable_schema = 0;
+VACUUM;
+""")
+        }
+    }
+
+    func initializeStorage() -> Result<Void, Error> {
+        return Result {
+            try connection.transaction {
+                try createItemsTable()
+                try createNamesTable()
+                try createSourcesTable()
             }
         }
     }
