@@ -1,9 +1,21 @@
 import UIKit
 
 struct DetailViewItem {
+    struct PropertyGroup {
+        let properties: [Property]
+    }
+
+    struct Property {
+        let title: String
+        let value: String
+        let description: String?
+        let link: URL?
+    }
+
     let name: String
     let description: String
     let state: StateViewModel
+    let propertyGroups: [PropertyGroup]
 }
 
 protocol DetailView {
