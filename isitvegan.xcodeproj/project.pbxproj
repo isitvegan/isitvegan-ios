@@ -112,8 +112,6 @@
 				45122A8922D33FB7006457A3 /* State */,
 				45F8560E22BD1DB500E06C19 /* Detail */,
 				450F1FC822B7D04900E1708D /* Search */,
-				45F0E16322D219770039F135 /* StateIndicatorView.swift */,
-				45CD2B6822DD924400271013 /* RoundedButton.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -257,6 +255,8 @@
 		45C86C1A22F8026C000557D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				45F0E16322D219770039F135 /* StateIndicatorView.swift */,
+				45CD2B6822DD924400271013 /* RoundedButton.swift */,
 				45C86C1B22F8028D000557D7 /* CopyableLabel.swift */,
 			);
 			path = View;
