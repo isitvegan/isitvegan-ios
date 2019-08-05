@@ -54,14 +54,9 @@ class DetailViewController: UIViewController {
         scrollView.addSubview(verticalStack)
 
         let headerStack = createHeaderStack()
-        headerStack.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
         verticalStack.addArrangedSubview(headerStack)
 
-        titleLabel = CopyableLabel()
-        titleLabel.font = .preferredFont(forTextStyle: .title1)
-        titleLabel.textColor = Color.label
-        titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = .center
+        titleLabel = createTitleLabel()
         headerStack.addArrangedSubview(titleLabel)
 
         stateIndicatorView = StateIndicatorView()
@@ -72,11 +67,7 @@ class DetailViewController: UIViewController {
         let contentStack = createVerticalStack()
         verticalStack.addArrangedSubview(contentStack)
 
-        descriptionLabel = UITextView()
-        descriptionLabel.isSelectable = true
-        descriptionLabel.isScrollEnabled = false
-        descriptionLabel.isEditable = false
-        descriptionLabel.font = .preferredFont(forTextStyle: .body)
+        descriptionLabel = createDescriptionLabel()
         contentStack.addArrangedSubview(descriptionLabel)
         contentStack.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
 
@@ -116,6 +107,24 @@ extension DetailViewController: DetailView {
 }
 
 extension DetailViewController {
+    private func createTitleLabel() -> UILabel {
+        let titleLabel = CopyableLabel()
+        titleLabel.font = .preferredFont(forTextStyle: .title1)
+        titleLabel.textColor = Color.label
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .center
+        return titleLabel
+    }
+
+    private func createDescriptionLabel() -> UITextView {
+        let descriptionLabel = UITextView()
+        descriptionLabel.isSelectable = true
+        descriptionLabel.isScrollEnabled = false
+        descriptionLabel.isEditable = false
+        descriptionLabel.font = .preferredFont(forTextStyle: .body)
+        return descriptionLabel
+    }
+
     private func createScrollView() -> UIScrollView {
         let scrollView = UIScrollView(frame: view.frame)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -133,12 +142,13 @@ extension DetailViewController {
     }
 
     private func createHeaderStack() -> UIStackView {
-        let verticalStack = UIStackView()
-        verticalStack.axis = .vertical
-        verticalStack.alignment = .center
-        verticalStack.spacing = 10
-        verticalStack.translatesAutoresizingMaskIntoConstraints = false
-        return verticalStack
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.spacing = 10
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
+        return stack
     }
 
     private func insertSeparator(_ stackView: UIStackView) {
