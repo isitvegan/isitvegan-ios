@@ -36,6 +36,7 @@
 		45A36FE322DCC23E0056AFBA /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A36FE222DCC23E0056AFBA /* RootController.swift */; };
 		45A36FE522DCC24B0056AFBA /* RootPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A36FE422DCC24B0056AFBA /* RootPresenter.swift */; };
 		45A36FE722DCC6FE0056AFBA /* DatabaseInitializationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A36FE622DCC6FE0056AFBA /* DatabaseInitializationState.swift */; };
+		45C86C1C22F8028D000557D7 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C86C1B22F8028D000557D7 /* CopyableLabel.swift */; };
 		45CD2B6722DD8F5600271013 /* LoadingErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD2B6622DD8F5600271013 /* LoadingErrorView.swift */; };
 		45CD2B6922DD924400271013 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD2B6822DD924400271013 /* RoundedButton.swift */; };
 		45CD2B6B22DE2C6800271013 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD2B6A22DE2C6800271013 /* Font.swift */; };
@@ -80,6 +81,7 @@
 		45A36FE222DCC23E0056AFBA /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		45A36FE422DCC24B0056AFBA /* RootPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresenter.swift; sourceTree = "<group>"; };
 		45A36FE622DCC6FE0056AFBA /* DatabaseInitializationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseInitializationState.swift; sourceTree = "<group>"; };
+		45C86C1B22F8028D000557D7 /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
 		45CD2B6622DD8F5600271013 /* LoadingErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingErrorView.swift; sourceTree = "<group>"; };
 		45CD2B6822DD924400271013 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		45CD2B6A22DE2C6800271013 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		455346B322A2ACD6005127C9 /* isitvegan */ = {
 			isa = PBXGroup;
 			children = (
+				45C86C1A22F8026C000557D7 /* View */,
 				450F1FC722B7CF4F00E1708D /* Scenes */,
 				454BB38022B7C26F0069A012 /* Storage */,
 				454BB37B22B7C0E00069A012 /* ItemsStorageUpdater */,
@@ -249,6 +252,14 @@
 				45A36FE422DCC24B0056AFBA /* RootPresenter.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		45C86C1A22F8026C000557D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45C86C1B22F8028D000557D7 /* CopyableLabel.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		45F8560E22BD1DB500E06C19 /* Detail */ = {
@@ -337,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C86C1C22F8028D000557D7 /* CopyableLabel.swift in Sources */,
 				45122A9122D37B7B006457A3 /* Result.swift in Sources */,
 				454BB37D22B7C12C0069A012 /* ItemsStorageUpdater.swift in Sources */,
 				45A36FE722DCC6FE0056AFBA /* DatabaseInitializationState.swift in Sources */,

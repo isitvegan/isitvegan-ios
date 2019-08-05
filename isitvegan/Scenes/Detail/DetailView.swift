@@ -29,7 +29,7 @@ class DetailViewController: UIViewController {
     private let item: Item
     
     private var titleLabel: UILabel!
-    private var descriptionLabel: UILabel!
+    private var descriptionLabel: UITextView!
     private var stateIndicatorView: StateIndicatorView!
 
     init(controller: DetailController, item: Item) {
@@ -57,7 +57,7 @@ class DetailViewController: UIViewController {
         headerStack.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
         verticalStack.addArrangedSubview(headerStack)
 
-        titleLabel = UILabel()
+        titleLabel = CopyableLabel()
         titleLabel.font = .preferredFont(forTextStyle: .title1)
         titleLabel.textColor = Color.label
         titleLabel.numberOfLines = 0
@@ -72,8 +72,10 @@ class DetailViewController: UIViewController {
         let contentStack = createVerticalStack()
         verticalStack.addArrangedSubview(contentStack)
 
-        descriptionLabel = UILabel()
-        descriptionLabel.numberOfLines = 0
+        descriptionLabel = UITextView()
+        descriptionLabel.isSelectable = true
+        descriptionLabel.isScrollEnabled = false
+        descriptionLabel.isEditable = false
         descriptionLabel.font = .preferredFont(forTextStyle: .body)
         contentStack.addArrangedSubview(descriptionLabel)
         contentStack.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
