@@ -62,7 +62,7 @@ extension RootViewController {
     }
 
     private func removeChildViewController() {
-        if let childViewController = self.childViewController {
+        if let childViewController = childViewController {
             childViewController.willMove(toParent: nil)
             childViewController.view.removeFromSuperview()
             childViewController.removeFromParent()
