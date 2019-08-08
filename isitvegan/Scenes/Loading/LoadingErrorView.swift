@@ -26,19 +26,14 @@ class LoadingErrorViewController: UIViewController {
     }
 
     private func createVerticalStack() -> UIStackView {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.spacing = 2
-
-        stack.addArrangedSubview(createTitle())
-        let description = createDescription()
-        stack.addArrangedSubview(description)
-        stack.setCustomSpacing(16, after: description)
-        stack.addArrangedSubview(createRetryButton())
-
-        return stack
+        return StackViewBuilder()
+            .axis(.vertical)
+            .alignment(.center)
+            .spacing(2)
+            .addSubview(createTitle())
+            .addSubview(createDescription(), spacingAfter: 16)
+            .addSubview(createRetryButton())
+            .build()
     }
 
     private func createTitle() -> UILabel {

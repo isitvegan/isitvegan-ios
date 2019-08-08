@@ -28,6 +28,11 @@ class StackViewBuilder {
         return self
     }
 
+    func distribution(_ distribution: UIStackView.Distribution) -> StackViewBuilder {
+        stackView.distribution = distribution
+        return self
+    }
+
     func spacing(_ spacing: CGFloat) -> StackViewBuilder {
         stackView.spacing = spacing
         return self

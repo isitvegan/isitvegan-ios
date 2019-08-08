@@ -21,30 +21,30 @@ class TableViewCell: UITableViewCell {
 
         nameLabel.font = .preferredFont(forTextStyle: .body)
         nameLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+
         eNumberLabel.textColor = Color.secondaryLabel
         eNumberLabel.font = .preferredFont(forTextStyle: .footnote)
-
-        let horizontalStack = UIStackView()
-        horizontalStack.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStack.spacing = 10
-        horizontalStack.alignment = .center
-        horizontalStack.distribution = .equalSpacing
 
         stateIndicator.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         stateIndicator.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
-        let verticalStack = UIStackView()
-        verticalStack.axis = .vertical
-        verticalStack.spacing = 2
+        let verticalStack = StackViewBuilder()
+            .spacing(2)
+            .axis(.vertical)
+            .addSubview(nameLabel)
+            .addSubview(eNumberLabel)
+            .build()
         verticalStack.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        verticalStack.addArrangedSubview(nameLabel)
-        verticalStack.addArrangedSubview(eNumberLabel)
 
-        horizontalStack.addArrangedSubview(verticalStack)
-        horizontalStack.addArrangedSubview(stateIndicator)
+        let horizontalStack = StackViewBuilder()
+            .spacing(10)
+            .alignment(.center)
+            .distribution(.equalSpacing)
+            .addSubview(verticalStack)
+            .addSubview(stateIndicator)
+            .build()
 
         contentView.addSubview(horizontalStack)
-
         contentView.addConstraints([
             horizontalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             horizontalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),

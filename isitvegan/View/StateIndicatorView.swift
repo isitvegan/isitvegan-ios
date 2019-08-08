@@ -47,10 +47,10 @@ class StateIndicatorView: UIView {
     }
 
     private static func createStackView() -> UIStackView {
-        let stackView = UIStackView()
-        stackView.spacing = 2
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .center
+        let stackView = StackViewBuilder()
+            .spacing(2)
+            .alignment(.center)
+            .build()
         stackView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         stackView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return stackView
