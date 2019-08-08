@@ -60,7 +60,7 @@ class SearchViewController: UISplitViewController {
         let tableViewController = UITableViewController(style: .grouped)
         tableViewController.definesPresentationContext = true
 
-        tableView = tableViewController.view as? UITableView
+        tableView = tableViewController.tableView
         tableView?.dataSource = self
         tableView?.delegate = self
         tableView?.register(self.cellClass, forCellReuseIdentifier: cellReuseIdentifier)
