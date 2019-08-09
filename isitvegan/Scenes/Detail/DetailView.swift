@@ -78,14 +78,24 @@ extension DetailViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellConfig = cells[indexPath.section][indexPath.row]
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         switch cellConfig {
         case .text(let text):
-            cell.textLabel!.text = text
+            return createTextCell(text: text)
         case .property(let propertyCell):
-            cell.textLabel!.text = "\(propertyCell.title): \(propertyCell.value)"
+            return createPropertyCell(propertyCell: propertyCell)
         }
+    }
 
+    private func createTextCell(text: String) -> UITableViewCell {
+        let cell = DetailViewTextCell(reuseIdentifier: nil)
+        cell.textView.text = text
+        cell.isUserInteractionEnabled = false
+        return cell
+    }
+
+    private func createPropertyCell(propertyCell: DetailViewItem.PropertyCell) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel!.text = "\(propertyCell.title): \(propertyCell.value)"
         cell.isUserInteractionEnabled = false
         return cell
     }
