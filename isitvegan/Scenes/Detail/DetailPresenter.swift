@@ -40,7 +40,7 @@ extension DetailPresenterImpl: DetailPresenter {
             let cell = DetailViewItem.Cell.property(DetailViewItem.PropertyCell(
                 title: "E number", value: eNumber, description: nil, link: nil
             ))
-            return [cell, cell]
+            return [cell]
         }
     }
 }

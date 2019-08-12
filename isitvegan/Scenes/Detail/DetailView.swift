@@ -94,8 +94,9 @@ extension DetailViewController {
     }
 
     private func createPropertyCell(propertyCell: DetailViewItem.PropertyCell) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel!.text = "\(propertyCell.title): \(propertyCell.value)"
+        let cell = DetailViewPropertyCell(reuseIdentifier: nil)
+        cell.titleLabelText = propertyCell.title
+        cell.valueLabelText = propertyCell.value
         cell.isUserInteractionEnabled = false
         return cell
     }
@@ -113,13 +114,14 @@ extension DetailViewController {
         separatorContainer.addConstraints([
             separator.leadingAnchor.constraint(equalTo: separatorContainer.leadingAnchor, constant: 15),
             separator.trailingAnchor.constraint(equalTo: separatorContainer.trailingAnchor, constant: -15),
-            separator.heightAnchor.constraint(equalTo: separatorContainer.heightAnchor),
+            separator.topAnchor.constraint(equalTo: separatorContainer.topAnchor, constant: 10),
+            separator.bottomAnchor.constraint(equalTo: separatorContainer.bottomAnchor, constant: -10),
         ])
         return separatorContainer
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1.0 / UIScreen.main.scale
+        return 20 + 1.0 / UIScreen.main.scale
     }
 }
 
@@ -151,7 +153,7 @@ extension DetailViewController {
             .axis(.vertical)
             .alignment(.center)
             .spacing(10)
-            .layoutMargins(.init(top: 20, left: 0, bottom: 0, right: 0))
+            .layoutMargins(.init(top: 20, left: 0, bottom: 10, right: 0))
             .addSubview(titleLabel)
             .addSubview(stateIndicatorView, spacingAfter: 20)
             .build()
@@ -164,7 +166,7 @@ extension DetailViewController {
         tableView.addConstraints([
             headerStack.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
             headerStack.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
-            headerStack.widthAnchor.constraint(equalTo: tableView.widthAnchor)
+            headerStack.widthAnchor.constraint(equalTo: tableView.widthAnchor),
         ])
     }
 

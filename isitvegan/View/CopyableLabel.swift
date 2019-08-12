@@ -24,15 +24,23 @@ class CopyableLabel: UILabel {
 
     override func copy(_ sender: Any?) {
         UIPasteboard.general.string = text
-        UIMenuController.shared.setMenuVisible(false, animated: true)
+        if #available(iOS 13.0, *) {
+            UIMenuController.shared.hideMenu()
+        } else {
+            UIMenuController.shared.setMenuVisible(false, animated: true)
+        }
     }
 
     @objc private func showMenu(sender: Any?) {
         becomeFirstResponder()
         let menu = UIMenuController.shared
         if !menu.isMenuVisible {
-            menu.setTargetRect(bounds, in: self)
-            menu.setMenuVisible(true, animated: true)
+            if #available(iOS 13.0, *) {
+                menu.showMenu(from: self, rect: bounds)
+            } else {
+                menu.setTargetRect(bounds, in: self)
+                menu.setMenuVisible(true, animated: true)
+            }
         }
     }
 }

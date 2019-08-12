@@ -37,6 +37,8 @@
 		45A36FE322DCC23E0056AFBA /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A36FE222DCC23E0056AFBA /* RootController.swift */; };
 		45A36FE522DCC24B0056AFBA /* RootPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A36FE422DCC24B0056AFBA /* RootPresenter.swift */; };
 		45A36FE722DCC6FE0056AFBA /* DatabaseInitializationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A36FE622DCC6FE0056AFBA /* DatabaseInitializationState.swift */; };
+		45B9793523003F8400504189 /* PropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B9793423003F8400504189 /* PropertyCell.swift */; };
+		45B979372300646800504189 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B979362300646800504189 /* CustomTableViewCell.swift */; };
 		45C1AD2422FCA17100792584 /* ReadonlyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C1AD2322FCA17100792584 /* ReadonlyTextView.swift */; };
 		45C1AD2722FD53DA00792584 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C1AD2622FD53DA00792584 /* TextCell.swift */; };
 		45C86C1C22F8028D000557D7 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C86C1B22F8028D000557D7 /* CopyableLabel.swift */; };
@@ -85,6 +87,8 @@
 		45A36FE222DCC23E0056AFBA /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		45A36FE422DCC24B0056AFBA /* RootPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPresenter.swift; sourceTree = "<group>"; };
 		45A36FE622DCC6FE0056AFBA /* DatabaseInitializationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseInitializationState.swift; sourceTree = "<group>"; };
+		45B9793423003F8400504189 /* PropertyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCell.swift; sourceTree = "<group>"; };
+		45B979362300646800504189 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		45C1AD2322FCA17100792584 /* ReadonlyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadonlyTextView.swift; sourceTree = "<group>"; };
 		45C1AD2622FD53DA00792584 /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		45C86C1B22F8028D000557D7 /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				45C1AD2622FD53DA00792584 /* TextCell.swift */,
+				45B9793423003F8400504189 /* PropertyCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 				45CD2B6822DD924400271013 /* RoundedButton.swift */,
 				45C86C1B22F8028D000557D7 /* CopyableLabel.swift */,
 				45C1AD2322FCA17100792584 /* ReadonlyTextView.swift */,
+				45B979362300646800504189 /* CustomTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				459EE8A122A2E7AD00F976FA /* ItemsDeserializer.swift in Sources */,
 				45C1AD2722FD53DA00792584 /* TextCell.swift in Sources */,
 				45122A8B22D33FE3006457A3 /* StateViewModelMapper.swift in Sources */,
+				45B979372300646800504189 /* CustomTableViewCell.swift in Sources */,
 				45902EAD22EF021C00F3A968 /* StorageResetter.swift in Sources */,
 				45A36FE322DCC23E0056AFBA /* RootController.swift in Sources */,
 				45CD2B6722DD8F5600271013 /* LoadingErrorView.swift in Sources */,
@@ -394,6 +401,7 @@
 				45F8561222BD1E0300E06C19 /* DetailPresenter.swift in Sources */,
 				450F202E22BA665B00E1708D /* TableViewCell.swift in Sources */,
 				45DF6F0C22EE085500A50DD8 /* ImageName.swift in Sources */,
+				45B9793523003F8400504189 /* PropertyCell.swift in Sources */,
 				454BB37222B77E380069A012 /* StorageWriter.swift in Sources */,
 				450F202922B9660200E1708D /* SqliteStorage.swift in Sources */,
 				459623AA22FC985800B408F3 /* StackViewBuilder.swift in Sources */,

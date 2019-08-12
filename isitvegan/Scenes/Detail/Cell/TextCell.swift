@@ -1,27 +1,23 @@
 import UIKit
 
-class DetailViewTextCell: UITableViewCell {
+class DetailViewTextCell: CustomTableViewCell {
     let textView = createReadonlyTextView()
 
-    init(reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: nil)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        innerView = textView
+    }
 
-        contentView.addSubview(textView)
-        contentView.addConstraints([
-            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            textView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-        ])
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private static func createReadonlyTextView() -> ReadonlyTextView {
         let textView = ReadonlyTextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = .preferredFont(forTextStyle: .body)
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
         return textView
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
