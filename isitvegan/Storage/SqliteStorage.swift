@@ -3,7 +3,7 @@ import SQLite
 import enum Swift.Result
 
 class SqliteStorage {
-    let databaseVersion = DatabaseVersion(2)
+    let databaseVersion = DatabaseVersion(4)
 
     private let connection: Connection
 
@@ -97,6 +97,7 @@ extension SqliteStorage: StorageWriter {
                 for item in items {
                     let itemId = try writeItem(item)
                     try writeItemNames(itemId: itemId, item: item)
+                    try writeItemSources(itemId: itemId, item: item)
                 }
             }
         }
@@ -179,17 +180,30 @@ extension SqliteStorage {
 
     private func findItemsBy(query: SchemaType, limit: Int) throws -> StorageReaderResult {
         let itemRows = try connection.prepare(query.limit(limit)).map { $0 }
-        let items = itemRows.map { itemFrom(row: $0) }
+        let items = try itemRows.map { try itemFrom(row: $0) }
         return StorageReaderResult(items: items)
     }
 
-    private func itemFrom(row: Row) -> Item {
-        Item(name: row[Items.name],
-             alternativeNames: [],
-             state: Item.State(rawValue: row[Items.state])!,
-             eNumber: row[Items.eNumber],
-             description: row[Items.itemDescription],
-             sources: [])
+    private func itemFrom(row: Row) throws -> Item {
+        let sources = try findItemSources(itemId: row[Items.id])
+
+        return Item(name: row[Items.name],
+                    alternativeNames: [],
+                    state: Item.State(rawValue: row[Items.state])!,
+                    eNumber: row[Items.eNumber],
+                    description: row[Items.itemDescription],
+                    sources: sources)
+    }
+
+    private func findItemSources(itemId: Int64) throws -> [Item.Source] {
+        let rows = try connection.prepare(sources.filter(Sources.item == itemId))
+        return rows.map { itemSourceFrom(row: $0) }
+    }
+
+    private func itemSourceFrom(row: Row) -> Item.Source {
+        return Item.Source(type: Item.Source.SourceType(rawValue: row[Sources.type])!,
+                           value: row[Sources.value],
+                           lastChecked: row[Sources.lastChecked])
     }
 
     private func escapeLikeWildcard(_ wildcard: String, escape: Character) -> String {
