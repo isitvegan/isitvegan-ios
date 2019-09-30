@@ -78,7 +78,7 @@
 		455346C322A2ACD7005127C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458DB16F22B2C7CB00DB43F8 /* DefaultSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSceneDelegate.swift; sourceTree = "<group>"; };
 		458DB17122B2C86A00DB43F8 /* isitvegan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = isitvegan.entitlements; sourceTree = "<group>"; };
-		45902EAC22EF021C00F3A968 /* StorageResetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StorageResetter.swift; path = "../../../../../../System/Volumes/Data/Users/ruben/Source/isitvegan-ios/isitvegan/Storage/StorageResetter.swift"; sourceTree = "<group>"; };
+		45902EAC22EF021C00F3A968 /* StorageResetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StorageResetter.swift; path = "StorageResetter.swift"; sourceTree = "<group>"; };
 		459623A922FC985800B408F3 /* StackViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewBuilder.swift; sourceTree = "<group>"; };
 		45974C5D22DCD4A000A0A69F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		459EE89822A2B10800F976FA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		45CD2B6622DD8F5600271013 /* LoadingErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingErrorView.swift; sourceTree = "<group>"; };
 		45CD2B6822DD924400271013 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		45CD2B6A22DE2C6800271013 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		45DF6F0B22EE085500A50DD8 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageName.swift; path = "../../../../../System/Volumes/Data/Users/ruben/Source/isitvegan-ios/isitvegan/ImageName.swift"; sourceTree = "<group>"; };
+		45DF6F0B22EE085500A50DD8 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageName.swift; path = "ImageName.swift"; sourceTree = "<group>"; };
 		45F0E16322D219770039F135 /* StateIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateIndicatorView.swift; sourceTree = "<group>"; };
 		45F8560F22BD1DF700E06C19 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		45F8561122BD1E0300E06C19 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
