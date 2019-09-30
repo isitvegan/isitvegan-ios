@@ -163,7 +163,7 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController {
     @available(iOS 13.0, *)
     private func createContextMenu(itemIndex: Int) -> UIMenu {
-        let show = UIAction(__title: "Show", image: UIImage(systemName: "eye"), identifier: nil,  handler: {_ in
+        let show = UIAction(title: "Show", image: UIImage(systemName: "eye"), identifier: nil,  handler: {_ in
             self.controller.showDetail(itemIndex: itemIndex)
         })
         return UIMenu(__title: "", image: nil, identifier: nil, children: [show])
