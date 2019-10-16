@@ -47,11 +47,12 @@ extension DetailPresenterImpl: DetailPresenter {
         }
     }
 
-    private func createSourcesCells(item: Item) -> [DetailViewItem.Cell]? {
-        if (item.sources.isEmpty) {
+    private func createSourcesCells( item: Item) -> [DetailViewItem.Cell]? {
+        let sources = item.sources.value()
+        if (sources.isEmpty) {
             return nil
         } else {
-            return item.sources.map { source in
+            return sources.map { source in
                 return DetailViewItem.Cell.property(DetailViewItem.PropertyCell(
                     title: "Sources", value: extractDomainFromUrl(url: source.value) ?? "", description: nil, link: nil))
             }

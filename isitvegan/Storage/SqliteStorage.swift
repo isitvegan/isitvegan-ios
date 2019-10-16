@@ -164,7 +164,7 @@ extension SqliteStorage {
     }
 
     private func writeItemSources(itemId: Int64, item: Item) throws {
-        for source in item.sources {
+        for source in item.sources.value() {
             try writeItemSource(itemId: itemId, source: source)
         }
     }
@@ -185,7 +185,9 @@ extension SqliteStorage {
     }
 
     private func itemFrom(row: Row) throws -> Item {
-        let sources = try findItemSources(itemId: row[Items.id])
+        let sources = LazyValue {
+            try! self.findItemSources(itemId: row[Items.id])
+        }
 
         return Item(name: row[Items.name],
                     alternativeNames: [],

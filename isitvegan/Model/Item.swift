@@ -22,5 +22,5 @@ struct Item {
     let state: State
     let eNumber: String?
     let description: String
-    let sources: [Source]
+    var sources: LazyValue<[Source]>
 }

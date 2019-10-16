@@ -40,7 +40,7 @@ extension JsonItem: Decodable {
         let sources = try values.decode([JsonItemSource].self, forKey: .sources).map { $0.source }
         item = Item(name: name, alternativeNames: alternativeNames,
                     state: state, eNumber: eNumber,
-                    description: description, sources: sources)
+                    description: description, sources: LazyValue { sources })
     }
 }
 

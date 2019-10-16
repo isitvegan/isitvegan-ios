@@ -47,6 +47,7 @@
 		45CD2B6B22DE2C6800271013 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD2B6A22DE2C6800271013 /* Font.swift */; };
 		45DF6F0C22EE085500A50DD8 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DF6F0B22EE085500A50DD8 /* ImageName.swift */; };
 		45F0E16422D219770039F135 /* StateIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0E16322D219770039F135 /* StateIndicatorView.swift */; };
+		45F2F3CF235784D300ED54C3 /* LazyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F2F3CE235784D300ED54C3 /* LazyValue.swift */; };
 		45F8561022BD1DF700E06C19 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8560F22BD1DF700E06C19 /* DetailView.swift */; };
 		45F8561222BD1E0300E06C19 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8561122BD1E0300E06C19 /* DetailPresenter.swift */; };
 		45F8561422BD1E1C00E06C19 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8561322BD1E1C00E06C19 /* DetailController.swift */; };
@@ -214,6 +215,7 @@
 				45CD2B6A22DE2C6800271013 /* Font.swift */,
 				45DF6F0B22EE085500A50DD8 /* ImageName.swift */,
 				453462E42301860E00156632 /* String.swift */,
+				45F2F3CE235784D300ED54C3 /* LazyValue.swift */,
 			);
 			path = isitvegan;
 			sourceTree = "<group>";
@@ -375,6 +377,7 @@
 				45C86C1C22F8028D000557D7 /* CopyableLabel.swift in Sources */,
 				45122A9122D37B7B006457A3 /* Result.swift in Sources */,
 				453462E52301860E00156632 /* String.swift in Sources */,
+				45F2F3CF235784D300ED54C3 /* LazyValue.swift in Sources */,
 				45C1AD2422FCA17100792584 /* ReadonlyTextView.swift in Sources */,
 				454BB37D22B7C12C0069A012 /* ItemsStorageUpdater.swift in Sources */,
 				45A36FE722DCC6FE0056AFBA /* DatabaseInitializationState.swift in Sources */,
