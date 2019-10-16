@@ -56,7 +56,7 @@ class DetailViewController: UITableViewController {
           return
         }
 
-        let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize)
         let height = size.height
 
         if headerView.frame.size.height != height {
