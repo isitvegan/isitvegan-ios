@@ -26,9 +26,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidFinishLaunching(_ application: UIApplication) {
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = compositionRoot.createRootView()
-        window?.tintColor = .veganGreen
-        window?.makeKeyAndVisible()
+        initializeWindow(window, appDelegate: self)
     }
 }
 
+class DefaultSceneDelegate: UIResponder {
+    var window: UIWindow?
+}
+
+@available(iOS 13.0, *)
+extension DefaultSceneDelegate: UIWindowSceneDelegate {
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        window = UIWindow(windowScene: scene as! UIWindowScene)
+        initializeWindow(window, appDelegate: appDelegate)
+    }
+}
+
+fileprivate func initializeWindow(_ window: UIWindow?, appDelegate: AppDelegate) {
+    window?.rootViewController = appDelegate.compositionRoot.createRootView()
+    window?.tintColor = .veganGreen
+    window?.makeKeyAndVisible()
+}
