@@ -1,3 +1,5 @@
+import Foundation
+
 protocol DetailController {
     func show(item: Item)
 }
@@ -12,6 +14,11 @@ class DetailControllerImpl {
 
 extension DetailControllerImpl: DetailController {
     func show(item: Item) {
-        presenter.present(item: item)
+        DispatchQueue.global(qos: .userInitiated).async {
+            let _ = item.sources.value()
+            DispatchQueue.main.async {
+                self.presenter.present(item: item)
+            }
+        }
     }
 }
