@@ -132,11 +132,15 @@ extension DetailViewController {
         let cellConfig = cells[indexPath.section][indexPath.row]
         if case .property(let propertyCell) = cellConfig {
             if let url = propertyCell.link {
-                let viewController = SFSafariViewController(url: url)
-                viewController.delegate = self
-                present(viewController, animated: true)
+                showUrlInSafariViewController(url: url)
             }
         }
+    }
+
+    private func showUrlInSafariViewController(url: URL) {
+        let viewController = SFSafariViewController(url: url)
+        viewController.delegate = self
+        present(viewController, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
