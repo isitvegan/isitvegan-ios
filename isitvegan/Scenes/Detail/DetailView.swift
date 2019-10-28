@@ -1,4 +1,5 @@
 import UIKit
+import SafariServices
 
 struct DetailViewItem {
     enum Cell {
@@ -87,17 +88,23 @@ extension DetailViewController {
     }
 
     private func createTextCell(text: String) -> UITableViewCell {
-        let cell = DetailViewTextCell(reuseIdentifier: nil)
+        let cell = DetailViewTextCell(style: .default, reuseIdentifier: nil)
         cell.textView.text = text
         cell.isUserInteractionEnabled = false
         return cell
     }
 
     private func createPropertyCell(propertyCell: DetailViewItem.PropertyCell) -> UITableViewCell {
-        let cell = DetailViewPropertyCell(reuseIdentifier: nil)
+        let cell = DetailViewPropertyCell(style: .default, reuseIdentifier: nil)
         cell.titleLabelText = propertyCell.title
         cell.valueLabelText = propertyCell.value
         cell.isUserInteractionEnabled = false
+
+        if let _ = propertyCell.link {
+            cell.accessoryType = .disclosureIndicator
+            cell.isUserInteractionEnabled = true
+        }
+
         return cell
     }
 
@@ -118,6 +125,18 @@ extension DetailViewController {
             separator.bottomAnchor.constraint(equalTo: separatorContainer.bottomAnchor, constant: -10),
         ])
         return separatorContainer
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        let cellConfig = cells[indexPath.section][indexPath.row]
+        if case .property(let propertyCell) = cellConfig {
+            if let url = propertyCell.link {
+                let viewController = SFSafariViewController(url: url)
+                viewController.delegate = self
+                present(viewController, animated: true)
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -143,6 +162,12 @@ extension DetailViewController: DetailView {
     
     func asUIViewController() -> UIViewController {
         self
+    }
+}
+
+extension DetailViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        dismiss(animated: true)
     }
 }
 

@@ -5,8 +5,8 @@ class CustomTableViewCell: UITableViewCell {
         didSet { addInnerViewToContentView() }
     }
 
-    init(reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+    override init(style: CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
     required init?(coder: NSCoder) {

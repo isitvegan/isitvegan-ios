@@ -3,8 +3,8 @@ import UIKit
 class DetailViewTextCell: CustomTableViewCell {
     let textView = createReadonlyTextView()
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(style: CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         innerView = textView
     }
 

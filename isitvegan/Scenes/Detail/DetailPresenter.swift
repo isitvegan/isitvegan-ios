@@ -54,7 +54,10 @@ extension DetailPresenterImpl: DetailPresenter {
         } else {
             return sources.map { source in
                 return DetailViewItem.Cell.property(DetailViewItem.PropertyCell(
-                    title: "Sources", value: extractDomainFromUrl(url: source.value) ?? "", description: nil, link: nil))
+                    title: "Sources",
+                    value: extractDomainFromUrl(url: source.value) ?? "",
+                    description: nil,
+                    link: URL(string: source.value)))
             }
         }
     }

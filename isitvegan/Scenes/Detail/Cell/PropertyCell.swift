@@ -18,8 +18,8 @@ class DetailViewPropertyCell: CustomTableViewCell {
     private let valueLabel = UILabel()
     private let descriptionLabel = UILabel()
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(style: CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         innerView = createHorizontalStack()
     }
 
