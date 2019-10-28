@@ -11,12 +11,17 @@ class DetailViewPropertyCell: CustomTableViewCell {
             valueLabel.text = valueLabelText
         }
     }
-    var descriptionLabelText: String? = nil
+    var descriptionLabelText: String? = nil {
+        didSet {
+            descriptionLabel.text = descriptionLabelText
+        }
+    }
+
     var link: URL? = nil
 
     private let titleLabel = UILabel()
     private let valueLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    private let descriptionLabel = createDescriptionLabel()
 
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,7 +38,23 @@ class DetailViewPropertyCell: CustomTableViewCell {
             .distribution(.equalSpacing)
             .alignment(.top)
             .addSubview(titleLabel)
-            .addSubview(valueLabel)
+            .addSubview(createVerticalStack())
             .build()
+    }
+
+    private func createVerticalStack() -> UIStackView {
+        return StackViewBuilder()
+            .axis(.vertical)
+            .alignment(.trailing)
+            .addSubview(valueLabel)
+            .addSubview(descriptionLabel)
+            .build()
+    }
+
+    private static func createDescriptionLabel() -> UILabel {
+        let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .footnote)
+        label.textColor = Color.secondaryLabel
+        return label
     }
 }

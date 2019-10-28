@@ -54,13 +54,24 @@ extension DetailPresenterImpl: DetailPresenter {
         } else {
             return sources.enumerated().map { (index, source) in
                 let title = index == 0 ? "Sources" : ""
+                let description = source.lastChecked.map(formatLastCheckedDate(date:))
+
                 return DetailViewItem.Cell.property(DetailViewItem.PropertyCell(
                     title: title,
                     value: extractDomainFromUrl(url: source.value) ?? "",
-                    description: nil,
+                    description: description,
                     link: URL(string: source.value)))
             }
         }
+    }
+
+    private func formatLastCheckedDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        formatter.locale = Locale(identifier: "en_US")
+        let formattedDate = formatter.string(from: date)
+        return "Last checked: \(formattedDate)"
     }
 
     private func extractDomainFromUrl(url: String) -> String? {

@@ -98,6 +98,7 @@ extension DetailViewController {
         let cell = DetailViewPropertyCell(style: .default, reuseIdentifier: nil)
         cell.titleLabelText = propertyCell.title
         cell.valueLabelText = propertyCell.value
+        cell.descriptionLabelText = propertyCell.description
         cell.isUserInteractionEnabled = false
 
         if let _ = propertyCell.link {
