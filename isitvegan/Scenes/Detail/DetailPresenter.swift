@@ -52,9 +52,10 @@ extension DetailPresenterImpl: DetailPresenter {
         if (sources.isEmpty) {
             return nil
         } else {
-            return sources.map { source in
+            return sources.enumerated().map { (index, source) in
+                let title = index == 0 ? "Sources" : ""
                 return DetailViewItem.Cell.property(DetailViewItem.PropertyCell(
-                    title: "Sources",
+                    title: title,
                     value: extractDomainFromUrl(url: source.value) ?? "",
                     description: nil,
                     link: URL(string: source.value)))
