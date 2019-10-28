@@ -135,6 +135,10 @@ extension DetailViewController: DetailView {
         stateIndicatorView.imageName = item.state.imageName
         stateIndicatorView.color = item.state.color
         stateIndicatorView.text = item.state.title
+
+        tableView.reloadData()
+        tableView.tableHeaderView?.setNeedsLayout()
+        tableView.tableHeaderView?.layoutIfNeeded()
     }
     
     func asUIViewController() -> UIViewController {
