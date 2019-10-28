@@ -133,15 +133,21 @@ extension DetailViewController {
         let cellConfig = cells[indexPath.section][indexPath.row]
         if case .property(let propertyCell) = cellConfig {
             if let url = propertyCell.link {
-                showUrlInSafariViewController(url: url)
+                openUrl(url: url, indexPath: indexPath)
             }
         }
     }
 
-    private func showUrlInSafariViewController(url: URL) {
-        let viewController = SFSafariViewController(url: url)
-        viewController.delegate = self
-        present(viewController, animated: true)
+    private func openUrl(url: URL, indexPath: IndexPath) {
+        UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { success in
+            if success {
+                self.tableView.deselectRow(at: indexPath, animated: false)
+            } else {
+                let viewController = SFSafariViewController(url: url)
+                viewController.delegate = self
+                self.present(viewController, animated: true)
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
