@@ -17,8 +17,6 @@ class RootViewController: UIViewController {
     private let createLoadingView: () -> UIViewController
     private let createLoadingErrorView: LoadingErrorViewFactory
 
-    private var childViewController: UIViewController?
-
     init(controller: RootController,
          createSearchView: @escaping () -> UIViewController,
          createLoadingView: @escaping () -> UIViewController,
@@ -62,10 +60,12 @@ extension RootViewController {
     }
 
     private func removeChildViewController() {
-        if let childViewController = childViewController {
-            childViewController.willMove(toParent: nil)
-            childViewController.view.removeFromSuperview()
-            childViewController.removeFromParent()
+        if self.children.count > 0 {
+            for viewController in self.children {
+                viewController.willMove(toParent: nil)
+                viewController.view.removeFromSuperview()
+                viewController.removeFromParent()
+            }
         }
     }
 }
