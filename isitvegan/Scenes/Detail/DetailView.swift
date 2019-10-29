@@ -145,6 +145,7 @@ extension DetailViewController {
             } else {
                 let viewController = SFSafariViewController(url: url)
                 viewController.delegate = self
+                viewController.preferredControlTintColor = self.tableView.tintColor
                 self.present(viewController, animated: true)
             }
         }
