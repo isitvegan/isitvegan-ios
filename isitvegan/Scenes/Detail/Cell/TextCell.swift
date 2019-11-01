@@ -6,6 +6,7 @@ class DetailViewTextCell: CustomTableViewCell {
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         innerView = textView
+        selectionStyle = .none
     }
 
     required init?(coder: NSCoder) {

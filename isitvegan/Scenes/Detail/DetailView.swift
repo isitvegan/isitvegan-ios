@@ -90,7 +90,6 @@ extension DetailViewController {
     private func createTextCell(text: String) -> UITableViewCell {
         let cell = DetailViewTextCell(style: .default, reuseIdentifier: nil)
         cell.textView.text = text
-        cell.isUserInteractionEnabled = false
         return cell
     }
 
