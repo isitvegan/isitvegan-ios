@@ -28,6 +28,7 @@ class SearchViewController: UISplitViewController {
     private let cellClass: AnyClass
 
     private weak var tableView: UITableView?
+    private weak var searchController: UISearchController?
     private weak var refreshControl: UIRefreshControl?
     private var tableFooterView: UILabel?
 
@@ -39,10 +40,12 @@ class SearchViewController: UISplitViewController {
     ]
 
     init(controller: SearchController,
-         cellClass: AnyClass) {
+         cellClass: AnyClass,
+         quickActionEvent: QuickActionEvent) {
         self.controller = controller
         self.cellClass = cellClass
         super.init(nibName: nil, bundle: nil)
+        quickActionEvent.setHandler { [weak self] in self?.applyQuickAction($0) }
     }
 
     required init?(coder: NSCoder) {
@@ -72,6 +75,7 @@ class SearchViewController: UISplitViewController {
         tableViewController.navigationItem.title = "Is it Vegan?"
 
         tableViewController.navigationItem.searchController = createSearchController()
+        searchController = tableViewController.navigationItem.searchController
         tableViewController.navigationItem.hidesSearchBarWhenScrolling = false
 
         let masterViewController = UINavigationController()
@@ -79,6 +83,33 @@ class SearchViewController: UISplitViewController {
         masterViewController.navigationBar.prefersLargeTitles = true
 
         viewControllers.append(masterViewController)
+    }
+
+    private func applyQuickAction(_ quickAction: QuickAction) {
+        switch quickAction {
+        case .SearchByName:
+            print("searching by name")
+            selectSearchScope(searchScope: .names)
+            activateSearch()
+        case .SearchByENumber:
+            print("search by e number")
+            selectSearchScope(searchScope: .eNumbers)
+            activateSearch()
+        case .None: break
+        }
+    }
+
+    private func activateSearch() {
+        if let searchController = self.searchController {
+            searchController.searchBar.isHidden = false
+            searchController.isActive = true
+            searchController.searchBar.becomeFirstResponder()
+        }
+    }
+
+    private func selectSearchScope(searchScope: SearchScopeKind) {
+        let index = searchScopes.firstIndex(where: { $0.kind == searchScope })
+        searchController?.searchBar.selectedScopeButtonIndex = index!
     }
 
     private func createSearchController() -> UISearchController {

@@ -9,6 +9,8 @@ class CompositionRoot {
         return SqliteStorage(connection: connection)
     }()
 
+    let quickActionEvent: QuickActionEvent = QuickActionEventImpl()
+
     func createRootView() -> RootViewController {
         let presenter = RootPresenterImpl()
         let controller = RootControllerImpl(presenter: presenter,
@@ -32,7 +34,8 @@ class CompositionRoot {
             storageReader: sqliteStorage
         )
         let searchView = SearchViewController(controller: searchController,
-                                              cellClass: TableViewCell.self)
+                                              cellClass: TableViewCell.self,
+                                              quickActionEvent: quickActionEvent)
         searchPresenter.view = searchView
         return searchView
     }

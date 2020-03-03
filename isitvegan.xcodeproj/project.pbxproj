@@ -19,6 +19,7 @@
 		45122A8F22D348DF006457A3 /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45122A8E22D348DF006457A3 /* CompositionRoot.swift */; };
 		45122A9122D37B7B006457A3 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45122A9022D37B7B006457A3 /* Result.swift */; };
 		453462E52301860E00156632 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453462E42301860E00156632 /* String.swift */; };
+		453D25F9236CC67000FB1070 /* QuickAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453D25F8236CC67000FB1070 /* QuickAction.swift */; };
 		454BB37222B77E380069A012 /* StorageWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37122B77E380069A012 /* StorageWriter.swift */; };
 		454BB37D22B7C12C0069A012 /* ItemsStorageUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37C22B7C12C0069A012 /* ItemsStorageUpdater.swift */; };
 		454BB37F22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BB37E22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift */; };
@@ -46,6 +47,7 @@
 		45CD2B6922DD924400271013 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD2B6822DD924400271013 /* RoundedButton.swift */; };
 		45CD2B6B22DE2C6800271013 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45CD2B6A22DE2C6800271013 /* Font.swift */; };
 		45DF6F0C22EE085500A50DD8 /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DF6F0B22EE085500A50DD8 /* ImageName.swift */; };
+		45E5F25123E9A815002BD2FB /* QuickActionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5F25023E9A815002BD2FB /* QuickActionEvent.swift */; };
 		45F0E16422D219770039F135 /* StateIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F0E16322D219770039F135 /* StateIndicatorView.swift */; };
 		45F2F3CF235784D300ED54C3 /* LazyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F2F3CE235784D300ED54C3 /* LazyValue.swift */; };
 		45F8561022BD1DF700E06C19 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F8560F22BD1DF700E06C19 /* DetailView.swift */; };
@@ -67,6 +69,7 @@
 		45122A8E22D348DF006457A3 /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
 		45122A9022D37B7B006457A3 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		453462E42301860E00156632 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		453D25F8236CC67000FB1070 /* QuickAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAction.swift; sourceTree = "<group>"; };
 		454BB37122B77E380069A012 /* StorageWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageWriter.swift; sourceTree = "<group>"; };
 		454BB37C22B7C12C0069A012 /* ItemsStorageUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsStorageUpdater.swift; sourceTree = "<group>"; };
 		454BB37E22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsStorageUpdaterImpl.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 		45CD2B6822DD924400271013 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		45CD2B6A22DE2C6800271013 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		45DF6F0B22EE085500A50DD8 /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
+		45E5F25023E9A815002BD2FB /* QuickActionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionEvent.swift; sourceTree = "<group>"; };
 		45F0E16322D219770039F135 /* StateIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateIndicatorView.swift; sourceTree = "<group>"; };
 		45F2F3CE235784D300ED54C3 /* LazyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyValue.swift; sourceTree = "<group>"; };
 		45F8560F22BD1DF700E06C19 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				45DF6F0B22EE085500A50DD8 /* ImageName.swift */,
 				453462E42301860E00156632 /* String.swift */,
 				45F2F3CE235784D300ED54C3 /* LazyValue.swift */,
+				453D25F8236CC67000FB1070 /* QuickAction.swift */,
+				45E5F25023E9A815002BD2FB /* QuickActionEvent.swift */,
 			);
 			path = isitvegan;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				453462E52301860E00156632 /* String.swift in Sources */,
 				45F2F3CF235784D300ED54C3 /* LazyValue.swift in Sources */,
 				45C1AD2422FCA17100792584 /* ReadonlyTextView.swift in Sources */,
+				453D25F9236CC67000FB1070 /* QuickAction.swift in Sources */,
 				454BB37D22B7C12C0069A012 /* ItemsStorageUpdater.swift in Sources */,
 				45A36FE722DCC6FE0056AFBA /* DatabaseInitializationState.swift in Sources */,
 				450F1FCA22B7D05E00E1708D /* SearchView.swift in Sources */,
@@ -411,6 +418,7 @@
 				459623AA22FC985800B408F3 /* StackViewBuilder.swift in Sources */,
 				45CD2B6922DD924400271013 /* RoundedButton.swift in Sources */,
 				45974C5E22DCD4A000A0A69F /* LoadingView.swift in Sources */,
+				45E5F25123E9A815002BD2FB /* QuickActionEvent.swift in Sources */,
 				45CD2B6B22DE2C6800271013 /* Font.swift in Sources */,
 				454BB37F22B7C1490069A012 /* ItemsStorageUpdaterImpl.swift in Sources */,
 				45122A8F22D348DF006457A3 /* CompositionRoot.swift in Sources */,
