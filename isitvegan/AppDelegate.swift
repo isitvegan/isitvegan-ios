@@ -16,23 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        compositionRoot.quickActionEvent.dispatch(quickActionFromLaunchOptions(launchOptions))
-
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = compositionRoot.createRootView()
-        window?.tintColor = .veganGreen
-        window?.makeKeyAndVisible()
-
+        initializeWindow(window, appDelegate: self)
+        handleQuickAction(appDelegate: self, shortcutItem: shortcutItemFromLaunchOptions(launchOptions))
         return true
     }
 
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        compositionRoot.quickActionEvent.dispatch(shortcutItemTypeToQuickAction(shortcutItem.type))
-    }
-
-    func applicationDidFinishLaunching(_ application: UIApplication) {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        initializeWindow(window, appDelegate: self)
+        handleQuickAction(appDelegate: self, shortcutItem: shortcutItem)
     }
 }
 
@@ -45,18 +36,14 @@ extension DefaultSceneDelegate: UIWindowSceneDelegate {
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let appDelegate = getSharedAppDelegate()
         window = UIWindow(windowScene: scene as! UIWindowScene)
         initializeWindow(window, appDelegate: appDelegate)
-        appDelegate.compositionRoot.quickActionEvent.dispatch(
-            shortcutItemTypeToQuickAction(connectionOptions.shortcutItem?.type ?? ""))
+        handleQuickAction(appDelegate: appDelegate, shortcutItem: connectionOptions.shortcutItem)
     }
 
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.compositionRoot.quickActionEvent.dispatch(
-            shortcutItemTypeToQuickAction(shortcutItem.type))
-        completionHandler(true)
+        handleQuickAction(appDelegate: getSharedAppDelegate(), shortcutItem: shortcutItem)
     }
 }
 
@@ -66,22 +53,23 @@ fileprivate func initializeWindow(_ window: UIWindow?, appDelegate: AppDelegate)
     window?.makeKeyAndVisible()
 }
 
-fileprivate func quickActionFromLaunchOptions(
-    _ launchOptions: [UIApplication.LaunchOptionsKey : Any]?
-) -> QuickAction {
-    return shortcutItemFromLaunchOptions(launchOptions)
-        .map { shortcutItemTypeToQuickAction($0.type) }
-        ?? .None
+fileprivate func handleQuickAction(appDelegate: AppDelegate, shortcutItem: UIApplicationShortcutItem?) {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let quickAction = shortcutItem.flatMap { item in shortcutItemTypeToQuickAction(item.type) }
+
+    quickAction.map { quickAction in
+        appDelegate.compositionRoot.quickActionEvent.dispatch(quickAction)
+    }
 }
 
-fileprivate func shortcutItemTypeToQuickAction(_ type: String) -> QuickAction {
+fileprivate func shortcutItemTypeToQuickAction(_ type: String) -> QuickAction? {
     switch type {
     case "SearchByNameAction":
         return .SearchByName
     case "SearchByENumberAction":
         return .SearchByENumber
     default:
-        return .None
+        return nil
     }
 }
 
@@ -89,4 +77,8 @@ fileprivate func shortcutItemFromLaunchOptions(
     _ launchOptions: [UIApplication.LaunchOptionsKey : Any]?
 ) -> UIApplicationShortcutItem? {
     return launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem
+}
+
+fileprivate func getSharedAppDelegate() -> AppDelegate {
+    UIApplication.shared.delegate as! AppDelegate
 }

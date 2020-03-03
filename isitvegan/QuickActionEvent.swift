@@ -14,7 +14,6 @@ extension QuickActionEventImpl : QuickActionEvent {
     }
 
     func dispatch(_ action: QuickAction) {
-        print("dispatching with", action)
         self.handler?(action)
     }
 }

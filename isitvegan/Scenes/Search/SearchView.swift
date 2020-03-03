@@ -88,14 +88,11 @@ class SearchViewController: UISplitViewController {
     private func applyQuickAction(_ quickAction: QuickAction) {
         switch quickAction {
         case .SearchByName:
-            print("searching by name")
             selectSearchScope(searchScope: .names)
             activateSearch()
         case .SearchByENumber:
-            print("search by e number")
             selectSearchScope(searchScope: .eNumbers)
             activateSearch()
-        case .None: break
         }
     }
 
