@@ -30,6 +30,7 @@ class SearchViewController: UISplitViewController {
     private weak var tableView: UITableView?
     private weak var searchController: UISearchController?
     private weak var refreshControl: UIRefreshControl?
+    private weak var detailViewController: UIViewController?
     private var tableFooterView: UILabel?
 
     private var items: [SearchViewItem] = []
@@ -86,6 +87,7 @@ class SearchViewController: UISplitViewController {
     }
 
     private func applyQuickAction(_ quickAction: QuickAction) {
+        detailViewController?.navigationController?.popToRootViewController(animated: true)
         switch quickAction {
         case .SearchByName:
             selectSearchScope(searchScope: .names)
@@ -146,6 +148,7 @@ extension SearchViewController: SearchView {
     }
     
     func showDetailView(_ detailView: UIViewController) {
+        detailViewController = detailView
         showDetailViewController(detailView, sender: nil)
     }
 }
